@@ -12,9 +12,19 @@ $(document).ready(function() {
         e.preventDefault();
         let formData = $(this).serialize();
         console.log(formData);
-        
-    })
+        $.post('/api/messages', formData, function(message) {
+            console.log('album after POST', message);
+            displayMessages(message);  //render the server's response
+        });
+        $(this).trigger("reset");
+    });
 });
+
+function renderAllMessages(messages) {
+  messages.forEach(function(message) {
+    renderAlbum(message);
+  });
+}
 
 function displayMessages (data) {
     data.forEach(function (oneMessageObj) {

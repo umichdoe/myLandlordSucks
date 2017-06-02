@@ -1,8 +1,3 @@
 body {
-    background-color: salmon;
-}
-.form-container, .msg-container, .container {
-    border-color: aquamarine;
-    border-style: double;
-    margin-top: 20px;
+    background-color: darksalmon;
 }

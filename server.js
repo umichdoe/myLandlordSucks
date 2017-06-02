@@ -1,19 +1,13 @@
 let express = require('express'),
     app = express(),
     db = require('./models'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function homepage (req, res) {
     res.sendFile(__dirname + '/views/index.html');
-});
-
-// Index of Messages
-app.get('/api/messages', function index (req, res) {
-    db.Message.find({}, function(err, allMessages) {
-        res.json(allMessages);
-    });
 });
 
 app.get('/api', function apiIndex(req, res, next) {
@@ -31,6 +25,22 @@ app.get('/api', function apiIndex(req, res, next) {
         ]
     })
 });
+
+// Index of Messages
+app.get('/api/messages', function index (req, res) {
+    db.Message.find({}, function(err, allMessages) {
+        res.json(allMessages);
+    });
+});
+
+// Post
+app.post('/api/messages', function create (req, res) {
+    db.Message.create(req.body, function (err, message) {
+        if (err) { console.log('error', err); }
+        res.json(message);
+    })
+})
+
 
 app.listen(process.env.PORT || 3000, function () {
     console.log('Express server is running on http://localhost:3000/');
