@@ -5,6 +5,7 @@ let express = require('express'),
     bodyParser = require('body-parser');
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function homepage (req, res) {
     res.sendFile(__dirname + '/views/index.html');
@@ -35,11 +36,18 @@ app.get('/api/messages', function index (req, res) {
 
 // Post
 app.post('/api/messages', function create (req, res) {
+    console.log(req.body);
     db.Message.create(req.body, function (err, message) {
         if (err) { console.log('error', err); }
         res.json(message);
     })
 })
+
+
+
+
+
+
 
 
 app.listen(process.env.PORT || 3000, function () {
