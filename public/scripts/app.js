@@ -1,13 +1,16 @@
+// this is our app.js file for the browser
+// this is line 2
+
 $(document).ready(function() {
     console.log('sanity check!');
-    
+
     $.ajax({
         method: 'GET',
         url: '/api/messages',
         success: displayMessages,
         error: errorMessage
     });
-    
+
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
         let formData = $(this).serialize();
