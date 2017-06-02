@@ -1,7 +1,8 @@
 body {
     background-color: salmon;
 }
-div {
-    border-style: dotted;
-    border-color: red;
+.form-container, .msg-container, .container {
+    border-color: aquamarine;
+    border-style: double;
+    margin-top: 20px;
 }
