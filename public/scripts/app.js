@@ -1,4 +1,6 @@
 // this is our app.js file for the browser
+// this is line 2
+
 $(document).ready(function() {
     console.log('sanity check!');
 
