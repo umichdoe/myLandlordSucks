@@ -1,3 +1,7 @@
 body {
     background-color: rgb(96, 34, 164);
 }
+
+p {
+  background-color: black;
+}
