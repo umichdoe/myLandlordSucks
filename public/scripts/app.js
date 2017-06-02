@@ -21,9 +21,9 @@ $(document).ready(function() {
 });
 
 function renderAllMessages(messages) {
-  messages.forEach(function(message) {
-    renderAlbum(message);
-  });
+    messages.forEach(function(message) {
+        renderAlbum(message);
+    });
 }
 
 function displayMessages (data) {
