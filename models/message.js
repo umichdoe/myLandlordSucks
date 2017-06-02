@@ -5,11 +5,11 @@ var MessageSchema = new Schema({
   title: String,
   address: String,
   rating: Number,
-  message: String
-//  date: {
-//    type: Date,
-//    default: Date.now();
-//  }
+  message: String,
+  date: {
+    type: Date,
+    default: Date.now()
+  }
 });
 
 var Message = mongoose.model('Message', MessageSchema);

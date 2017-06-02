@@ -1,9 +1,6 @@
 body {
     background-color: rgb(96, 34, 164);
-}
-
-p {
-  background-color: black;
+    color: white;
 }
 h1 {
     font-family: monospace;
