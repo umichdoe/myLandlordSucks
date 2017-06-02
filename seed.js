@@ -20,19 +20,20 @@ var db = require("./models");
 var messageList = [];
 
 messageList.push({
-    title: "My Landlord's dog attacked me!",
+    title: "My Landlords dog attacked me!",
     address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
     rating: 0,
     message: "I was statying at an AirBnB"
 });
 
+console.log('this is db.Message: ', db.Message);
 
-db.Message.remove({}, function(err, albums){
+db.Message.remove({}, function(err, removed){
 
-  db.Message.create(messageList, function(err, messages){
+  db.Message.create(messageList, function(err, created){
     if (err) { return console.log('ERROR', err); }
-    console.log("all messages:", messages);
-    console.log("created", messageList.length, "albums");
+    console.log("all messages:", messageList);
+    console.log("created", messageList.length, "messages.");
     process.exit();
   });
 

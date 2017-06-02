@@ -1,6 +1,7 @@
 let express = require('express'),
-    app = express();
-
+    app = express(),
+    db = require('./models'),
+    mongoose = require('mongoose');
 
 app.use(express.static(__dirname + '/public'));
 
@@ -9,11 +10,11 @@ app.get('/', function homepage (req, res) {
 });
 
 // Index of Messages
-//app.get('/api/messages', function index (req, res) {
-//    db.Message.find({}, function(err, allMessages) {
-//        res.json(allMessages);
-//    });
-//});
+app.get('/api/messages', function index (req, res) {
+    db.Message.find({}, function(err, allMessages) {
+        res.json(allMessages);
+    });
+});
 
 app.get('/api', function apiIndex(req, res, next) {
     res.json({
@@ -23,10 +24,10 @@ app.get('/api', function apiIndex(req, res, next) {
         baseUrl: "https://boiling-earth-58583.herokuapp.com/",
         endpoints: [
             {method: "GET", path: "/api", description: "Describes all available endpoints."},
-            {method: "GET", path: "/api/messages", description: "Index of all the messages and complaints of unhappy tenants."}, // DONE #3
-            {method: "POST", path: "/api/messages", description: "Create or add a new message"}, // DONE #4
-            {method: "PUT", path: "/api/messages/:id", description: "Edit a message and update it."}, //  DONE #5
-            {method: "DELETE", path: "/api/messages/:id", description: "Destroy a message."} // #6
+            {method: "GET", path: "/api/messages", description: "Index of all the messages and complaints of unhappy tenants."},
+            {method: "POST", path: "/api/messages", description: "Create or add a new message"},
+            {method: "PUT", path: "/api/messages/:id", description: "Edit a message and update it."}, 
+            {method: "DELETE", path: "/api/messages/:id", description: "Destroy a message."}
         ]
     })
 });
