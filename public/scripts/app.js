@@ -7,15 +7,24 @@ $(document).ready(function() {
         success: displayMessages,
         error: errorMessage
     });
+    
+    $('#message-form form').on('submit', function (e) {
+        e.preventDefault();
+        let formData = $(this).serialize();
+        console.log(formData);
+        
+    })
 });
 
 function displayMessages (data) {
     data.forEach(function (oneMessageObj) {
         $('#messageBoard').append(`
-        <p>Title: ${oneMessageObj.title}</p>
-        <p>Address: ${oneMessageObj.address}</p>
-        <p>Rating: ${oneMessageObj.rating}</p>
-        <p>Message: ${oneMessageObj.message}</p>
+        <div class='container'>
+            <h4>Title:</h4> <p>${oneMessageObj.title}</p>
+            <h4>Address:</h4> <p>${oneMessageObj.address}</p>
+            <h4>Rating:</h4> <p>${oneMessageObj.rating}</p>
+            <button class='btn btn-primary'>Read Message</button>
+        </div>
         `);
     })
 }

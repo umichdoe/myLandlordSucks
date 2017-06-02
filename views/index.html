@@ -32,21 +32,88 @@
 
 
 <!--    Form    -->
+    
+    <section id='message-form' class="container">
+      <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <form class="form-horizontal">
+          <fieldset>
+
+            <!-- Form Name -->
+            <legend>Post New Message</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="title">Title</label>
+              <div class="col-md-4">
+              <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="address">Address</label>
+              <div class="col-md-4">
+              <input id="address" name="address" type="text" placeholder="" class="form-control input-md">
+
+              </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="rating">Rating</label>
+              <div class="col-md-4">
+              <select name="rating" class="form-control">
+                    <option value="zero">0</option>
+                    <option value="one">1</option>
+                    <option value="two">2</option>
+                    <option value="three">3</option>
+                    <option value="four">4</option>
+                    <option value="five">5</option>
+                </select>
+
+              </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="message">Message</label>
+              <div class="col-md-4">
+                <textarea class="form-control" id="message" name="message"></textarea>
+              </div>
+            </div>
+
+
+            <!-- Button -->
+            <div class="form-group">
+              <div class="col-md-4">
+                <button id="singlebutton" name="singlebutton" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      </div>
+    </section>
+    
+<!--
     <div class='container'>
         <div class='row'>
             <form>
                 <div class="form-group">
-                    <label>Title</label>
-                    <input class="form-control">
+                    <label for="title">Title</label>
+                    <input id='title' name='title' class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label>Address</label>
-                    <input class="form-control">
+                    <label for="address">Address</label>
+                    <input id='address' name='address' class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label>Rating</label>
+                    <label for="rating">Rating</label>
                     <select name="rating" class="form-control">
                         <option value="zero">0</option>
                         <option value="one">1</option>
@@ -59,17 +126,20 @@
 
                 
                 <div class="form-group">
-                    <label>Message</label>
+                    <label for="message">Message</label>
                     <textarea class="form-control"></textarea>
                 </div>
+                
+                <button type="submit" class="btn btn-primary btn-create">Submit</button>
             </form>
         </div>
     </div>
+-->
     
 <!--  Message List  -->
     <div class='container'>
         <div id='messageBoard' class='row'>
-            <p>Lorem ipsum</p>
+        <!--    Seed Data       -->
         </div>
     </div>
 </body>
