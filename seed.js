@@ -25,6 +25,24 @@ messageList.push({
     rating: 0,
     message: "I was statying at an AirBnB"
 });
+messageList.push({
+    title: "My Lan22222222dlords dog attacked me!",
+    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
+    rating: 0,
+    message: "I was statying at an AirBnB"
+});
+messageList.push({
+    title: "My Landlords 3333 dog attacked me!",
+    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
+    rating: 0,
+    message: "I was statying at an AirBnB"
+});
+messageList.push({
+    title: "My Landlords 44444 dog attacked me!",
+    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
+    rating: 0,
+    message: "I was statying at an AirBnB"
+});
 
 console.log('this is db.Message: ', db.Message);
 
