@@ -8,6 +8,7 @@
   <title>My Landlord Sucks</title>
 
   <!-- STYLESHEETS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="/styles/styles.css">
 
@@ -25,23 +26,29 @@
 
   <!--    Header    -->
   <div class='container'>
-    <div class='row'>
-      <h1>My Landlord Sucks.</h1>
+    <div class='row col-md-10'>
+      <h1>My Landlord Sucks</h1>
     </div>
   </div>
 
   <!--    Form    -->
-
+    
   <section id='message-form' class="container">
+      
+<!--   New Message Button   -->
+    <button class='btn btn-success btn-new-msg'>
+        <span class='new-msg'>
+            <i class="fa fa-plus" aria-hidden="true"></i> New Message
+        </span>
+        <span class='close-msg'>
+            <i class="fa fa-times" aria-hidden="true"></i> Close
+        </span>
+    </button>
+      
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-
-        <form class="form-horizontal">
+        <form class="form-horizontal create-form">
           <fieldset>
-
-            <!-- Form Name -->
-            <legend>Post New Message</legend>
-
             <!-- Text input-->
             <div class="form-group">
               <label class="col-md-4 control-label" for="title">Title</label>

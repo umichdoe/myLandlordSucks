@@ -3,7 +3,16 @@
 
 $(document).ready(function() {
     console.log('sanity check!');
-
+    
+// Create form is hidden on load. Clicking 'New Message' button will show it.
+    $('.btn-new-msg').click(function() {
+        $('.create-form').toggle('slow');
+        $('span.close-msg').toggle('slow');
+        $('span.new-msg').toggle('slow');
+        $(this).toggleClass('btn-danger');
+    });
+    
+    
     $.ajax({
         method: 'GET',
         url: '/api/messages',
@@ -14,7 +23,6 @@ $(document).ready(function() {
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
         let formData = $(this).serialize();
-//        let formDataJson = JSON.parse('{"' + decodeURI(formData.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
         console.log('formData here: ', formData);
 
         $.ajax({

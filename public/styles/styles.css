@@ -1,11 +1,19 @@
 body {
-    background-color: rgb(96, 34, 164);
-    color: grey;
+    background-color: #DCDCDC;
 }
 h1 {
-    font-family: monospace;
+    text-align: center;
     color: #999;
     font-weight: bolder;
+}
+.close-msg {
+    display: none;
+}
+.btn-new-msg {
+    margin: 1em 0;
+}
+.create-form {
+    display: none;
 }
 .btn-primary {
   margin-right: 20px;
