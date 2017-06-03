@@ -16,7 +16,7 @@ $(document).ready(function() {
         let formData = $(this).serialize();
 //        let formDataJson = JSON.parse('{"' + decodeURI(formData.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
         console.log('formData here: ', formData);
-       
+
         $.ajax({
             method: 'POST',
             url: '/api/messages',
@@ -26,7 +26,14 @@ $(document).ready(function() {
         // empties the form.
         $(this).trigger("reset");
     });
-});
+
+
+
+
+
+
+
+}); // end of document ready
 
 function renderSeedMessages(messagesArr) {
     messagesArr.forEach(function(messageObj) {
@@ -42,16 +49,62 @@ function displayMessage (messageObj) {
             <h4>Address:</h4> <p>${messageObj.address}</p>
             <h4>Rating:</h4> <p>${messageObj.rating}</p>
             <h4>Date:</h4> <p>${messageObj.date}</p>
-            <button class='btn btn-primary'>Read Message</button>
+            <button class='btn btn-primary' id='${messageObj._id}'>Read Message</button>
         </div>
         `);
+        $(`#${messageObj._id}`).on('click', function(e){
+        // $('#messageModal').append( `
+        //     <div class="modal fade" id="messageModal">
+        //       <div class="modal-dialog" role="document">
+        //         <div class="modal-content">
+        //           <div class="modal-header">
+        //             <h5 class="modal-title">Modal title</h5>
+        //             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        //             <span aria-hidden="true">&times;</span>
+        //           </button>
+        //           </div>
+        //           <div class="modal-body">
+        //             <p>jkhjkhjkhjkhk</p>
+        //           </div>
+        //           <div class="modal-footer">
+        //             <button type="button" class="btn btn-primary">Save changes</button>
+        //             <button type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+        //           </div>
+        //         </div>
+        //       </div>
+        //     </div>`);.
+        $('p#messageBody').html("").append(`
+          <form>
+            <label for='title'>Title</label>
+            <input id='title' name='title' value='${messageObj.title}'>
+            <label for='address'>Address</label>
+            <input id='address' name='address' value='${messageObj.address}'>
+            <label for='rating'>Rating</label>
+            <input id='rating' name='rating' value='${messageObj.rating}'>
+            <label for='message'>Message</label>
+            <input id='message' name='message' value='${messageObj.message}'>
+          </form>`);
+            $('#messageModal').modal()
+
+          // let buttonId = $(this).attr('id');
+          // alert(buttonId);
+          // alert(`This is the
+          //   ${messageObj._id},
+          //   This is the date ${messageObj.date},${messageObj.rating},${messageObj.address},${messageObj.title}`);
+        });
+
 };
+
+
 
 function errorMessage (error) {
     console.log(err);
 }
 
+function testButton(e){
+  e.preventDefault();
 
+}
 
 
 //{ title: req.body.title,
