@@ -17,7 +17,27 @@
 //9 https://handsontap.com/california-landlord-horror-stories/
 var db = require("./models");
 
-var messageList = [];
+//empty array to add objects to.
+
+// lodash for the times do util function
+var _ = require('lodash');
+//library to create fake https://www.npmjs.com/package/faker
+var faker = require('faker');
+
+// this will fill the messageList with 20 objects that you can turn into models
+var messageList = _.times(20, () => {
+        return {
+            // you can follow the list at npm
+            // the syntax is faker.category.noun()
+            title: faker.lorem.words(),
+            address: faker.address.city(),
+            rating: Math.floor(Math.random() * 6),
+            message: faker.lorem.paragraph(),
+            date: faker.date.past()
+            // image: faker.image.city()
+        }
+    }
+);
 
 messageList.push({
     title: "My Landlords dog attacked me!",
