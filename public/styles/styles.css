@@ -1,20 +1,43 @@
 body {
     background-color: #DCDCDC;
 }
-h1 {
+header {
+    background-color: firebrick;
+}
+header > h1 {
+    font-family: 'Gloria Hallelujah', sans-serif;
+    font-size: 4em;
     text-align: center;
-    color: #999;
+    color: #fff;
     font-weight: bolder;
+    margin: 0;
+    padding: .2em 0 .5em 0;
 }
 .close-msg {
     display: none;
 }
 .btn-new-msg {
-    margin: 1em 0;
+    margin: 2em 0;
 }
 .create-form {
     display: none;
 }
 .btn-primary {
   margin-right: 20px;
+}
+.msg-wrapper {
+    background-color: #fff;
+    margin: 1em 0;
+    border-radius: .3em;
+}
+img.msg-img {
+    padding-left: 0;
+    border-top-left-radius: .3em;
+    border-bottom-left-radius: .3em;
+}
+.container.msg-wrapper {
+    padding-left: 0;
+}
+.msg-content {
+    padding-bottom: 5px;
 }
