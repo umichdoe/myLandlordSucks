@@ -50,21 +50,18 @@ function renderSeedMessages(messagesArr) {
 }
 
 function displayMessage (messageObj) {
-        console.log('messageObj is: ', messageObj)
-        $('#messageBoard').append(`
-        <div class='container msg-wrapper'>
-            <img class='col-xs-3 msg-img' src='https://eurlog.files.wordpress.com/2008/10/falling-down-house1.jpg' >
-            <div class='msg-content col-xs-8'>
-                <h4>${messageObj.title}</h4>
-                <p>${messageObj.address}</p>
-                <p>${messageObj.rating}</p>
-                <p>${messageObj.date}</p>
-                <button class='btn btn-primary' id='${messageObj._id}'>Read Message</button>
-            </div>
+    console.log('messageObj is: ', messageObj)
+    $('#messageBoard').append(`
+    <div class='container msg-wrapper'>
+        <img class='${messageObj._id} col-xs-2 msg-img' src='https://eurlog.files.wordpress.com/2008/10/falling-down-house1.jpg' >
+        <div class='msg-content col-xs-8'>
+            <h4 class='${messageObj._id}'>${messageObj.title}</h4>
+            <p>${messageObj.address}</p>
+            <p>${messageObj.rating}</p>
+            <p>${moment(messageObj.date).format('LLL')}</p>
         </div>
-        `);
-        $(`#${messageObj._id}`).on('click', function(e){
-
+    </div>`);
+    $(`.${messageObj._id}`).on('click', function(e){
         $('p#messageBody').html("").append(`
           <form>
             <label for='title'>Title</label>
@@ -76,16 +73,9 @@ function displayMessage (messageObj) {
             <label for='message'>Message</label>
             <input id='message' name='message' value='${messageObj.message}'>
           </form>`);
-            $('#messageModal').modal()
-
-          // let buttonId = $(this).attr('id');
-          // alert(buttonId);
-          // alert(`This is the
-          //   ${messageObj._id},
-          //   This is the date ${messageObj.date},${messageObj.rating},${messageObj.address},${messageObj.title}`);
-        });
-
-};
+        $('#messageModal').modal();
+    });
+}; // end of DisplayMessage function.
 
 
 
