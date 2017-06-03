@@ -3,6 +3,7 @@ let express = require('express'),
     db = require('./models'),
     mongoose = require('mongoose'),
     bodyParser = require('body-parser');
+    _ = require('lodash');
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,7 +22,7 @@ app.get('/api', function apiIndex(req, res, next) {
             {method: "GET", path: "/api", description: "Describes all available endpoints."},
             {method: "GET", path: "/api/messages", description: "Index of all the messages and complaints of unhappy tenants."},
             {method: "POST", path: "/api/messages", description: "Create or add a new message"},
-            {method: "PUT", path: "/api/messages/:id", description: "Edit a message and update it."}, 
+            {method: "PUT", path: "/api/messages/:id", description: "Edit a message and update it."},
             {method: "DELETE", path: "/api/messages/:id", description: "Destroy a message."}
         ]
     })
