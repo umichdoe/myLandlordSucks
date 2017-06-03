@@ -13,6 +13,13 @@ header > h1 {
     margin: 0;
     padding: .2em 0 .5em 0;
 }
+#message-form {
+    padding-right: 0;
+}
+.btn-new-msg {
+    min-width: 200px;
+    float: right;
+}
 .close-msg {
     display: none;
 }
@@ -34,10 +41,19 @@ img.msg-img {
     padding-left: 0;
     border-top-left-radius: .3em;
     border-bottom-left-radius: .3em;
+    cursor: pointer;
 }
+img.msg-img:hover {
+    opacity: .8;
+}
+
 .container.msg-wrapper {
     padding-left: 0;
 }
 .msg-content {
     padding-bottom: 5px;
+}
+.msg-content > h4:hover {
+    cursor: pointer;
+    color: firebrick;
 }
