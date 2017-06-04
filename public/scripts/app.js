@@ -3,7 +3,7 @@
 
 $(document).ready(function() {
     console.log('sanity check!');
-    
+
 // Create form is hidden on load. Clicking 'New Message' button will show it.
     $('.btn-new-msg').click(function() {
         $('.create-form').toggle('slow');
@@ -11,8 +11,8 @@ $(document).ready(function() {
         $('span.new-msg').toggle('slow');
         $(this).toggleClass('btn-danger');
     });
-    
-    
+
+
     $.ajax({
         method: 'GET',
         url: '/api/messages',
@@ -52,7 +52,7 @@ function renderSeedMessages(messagesArr) {
 function displayMessage (messageObj) {
     console.log('messageObj is: ', messageObj)
     $('#messageBoard').append(`
-    <div class='container msg-wrapper'>
+    <div class='container msg-wrapper' data-message-id="${messageObj._id}">
         <img class='${messageObj._id} col-xs-2 msg-img' src='https://eurlog.files.wordpress.com/2008/10/falling-down-house1.jpg' >
         <div class='msg-content col-xs-8'>
             <h4 class='${messageObj._id}'>${messageObj.title}</h4>
@@ -73,10 +73,27 @@ function displayMessage (messageObj) {
             <label for='message'>Message</label>
             <input id='message' name='message' value='${messageObj.message}'>
           </form>`);
+
         $('#messageModal').modal();
+        $('.delete-button').on('click', function(e){
+          $.ajax({
+            url: `/api/messages/${messageObj._id}`,
+            method: 'DELETE',
+            success: deleteMessage
+
+          });
+        });console.log(`ajax url is ${messageObj._id}`)
+
     });
 }; // end of DisplayMessage function.
+function deleteMessage(data){
+  debugger
+  console.log(data)
+  var messageId = data._id;
+  console.log("data._id = " +  messageId);
+  $(`div[data-message-id="${messageId}"]`).remove();
 
+}
 
 
 function errorMessage (error) {
