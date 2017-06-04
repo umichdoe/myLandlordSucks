@@ -46,26 +46,27 @@
             <i class="fa fa-times" aria-hidden="true"></i> Close
         </span>
     </button>
-
+        
+<!--   New Message Form   -->
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <form class="form-horizontal create-form">
           <fieldset>
             <div class="form-group col-xs-12">
               <label class="control-label" for="title">Title</label>
-              <div class="">
+              <div>
                 <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
               </div>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="address">Address</label>
-              <div class="">
+              <div>
                 <input id="address" name="address" type="text" placeholder="" class="form-control input-md">
               </div>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="rating">Rating</label>
-              <div class="">
+              <div>
                 <select name="rating" class="form-control">
                     <option value='0'>0</option>
                     <option value="1">1</option>
@@ -74,11 +75,12 @@
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
+        
               </div>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="imgURL">Image URL</label>
-              <div class="">
+              <div>
                 <input id="imgURL" name="imgURL" type="text" placeholder="" class="form-control input-md">
               </div>
             </div>
@@ -89,7 +91,7 @@
               </div>
             </div>
 
-            <!--   Button   -->
+            <!--   Submit Button   -->
             <div id=submit-div>
                 <button name="submitButton" class="btn btn-primary submit-button">Submit</button>
             </div>
@@ -99,7 +101,7 @@
     </div>
   </section>
 
-<!--  Message List  -->
+<!--  Message Board  -->
   <div class='container'>
     <div id='messageBoard' class='row'>
       <!--    Seed Data       -->

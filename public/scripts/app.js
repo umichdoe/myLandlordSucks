@@ -28,7 +28,7 @@ $(document).ready(function() {
             data: formData,
             success: displayMessage
         });
-        // empties the form.
+        // Empties the form.
         $(this).trigger("reset");
     });
 
@@ -50,10 +50,6 @@ $(document).ready(function() {
 
         console.log(`msgID here: ${msgId}`, );
 
-        // let revisedData = $(this).serialize();
-
-        // console.log('This is revisedData: ' + revisedData);
-
         $.ajax({
             url: `/api/messages/${msgId}`,
             method: 'PUT',
@@ -63,21 +59,7 @@ $(document).ready(function() {
         });
     });
 
-}); // end of document ready
-
-function deleteMessage(data){
-    console.log(data);
-    var messageId = data._id;
-    console.log("data._id = ",  messageId);
-    $(`#${messageId}`).remove();
-}
-
-function updateMessage(data){
-    console.log("Data from UpdateMessage function " + data);
-    var messageId = data._id;
-    console.log("data._id = ",  messageId);
-    // $(`#${messageId}`).update();
-}
+}); // end of $(document).ready(function()).
 
 
 
@@ -85,32 +67,29 @@ function updateMessage(data){
 
 
 
-
-
-
-
-
+///////////////// Global Scope Functions /////////////////
 function renderSeedMessages(messagesArr) {
     messagesArr.forEach(function(messageObj) {
         displayMessage(messageObj);
     });
 }
-
 // Show One.
 function displayMessage (messageObj) {
     let imgURL = messageObj.imgURL || 'https://media.giphy.com/media/3R1dpjYOfnzJm/giphy.gif';
+    // Add this to Message Board.
     $('#messageBoard').prepend(`
     <div id="${messageObj._id}" class='container msg-wrapper'>
         <img class='${messageObj._id} col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
         <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-5 col-lg-5'>
             <h4 class='${messageObj._id}'>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
-            <p>${messageObj.rating}</p>
+            <p><div class='stars-${messageObj._id}'></div></p>
             <p>${moment(messageObj.date).format('LLL')}</p>
         </div>
     </div>`);
-    // <img> and <h4>
-    $(`.${messageObj._id}`).on('click', function(e){
+    displayStars(messageObj);
+    // Add this form to Modal when <img> or <h4> is clicked.
+    $(`.${messageObj._id}`).on('click', function(e) {
         $('.modal-body').html(`
           <form class='form-horizontal'>
             <div class="form-group">
@@ -123,7 +102,7 @@ function displayMessage (messageObj) {
             </div>
             <div class="form-group">
                 <label for='rating' class='col-xs-2'>Rating</label>
-                <input id='rating' name='rating' class='col-xs-9' value='${messageObj.rating}'>
+                <div class='stars-${messageObj._id}'></div>
             </div>
             <div class="form-group">
                 <label for='imgURL' class='col-xs-2'>Image URL</label>
@@ -134,35 +113,66 @@ function displayMessage (messageObj) {
                 <textarea id='message' name='message' class='col-xs-9'>${messageObj.message}</textarea>
             </div>
           </form>`);
+        displayStars(messageObj);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
         $('#messageModal').modal();
     });
-
-}; // end of DisplayMessage function.
-
-
-
-
-
-
+}; 
+// Display Rating Stars.
+function displayStars(msgObj) {
+    let empty = '<i class="fa fa-star-o" aria-hidden="true"></i>';
+    let full = '<i class="fa fa-star" aria-hidden="true"></i>';
+    switch (msgObj.rating) {
+        case 0:
+            $(`.stars-${msgObj._id}`).html(`<span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
+            break;
+        case 1: 
+            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
+            break;
+        case 2: 
+            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
+            break;
+        case 3: 
+            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${empty}</span><span>${empty}</span>`);
+            break;
+        case 4: 
+            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${empty}</span>`);
+            break;
+        case 5: 
+            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span>`);
+            break;
+    }
+}
+// Update.
+function updateMessage(data){
+    console.log("Data from UpdateMessage function " + data);
+    var messageId = data._id;
+    console.log("data._id = ",  messageId);
+    // $(`#${messageId}`).update();
+}
+// Delete One.
+function deleteMessage(data){
+    console.log(data);
+    var messageId = data._id;
+    console.log("data._id = ",  messageId);
+    $(`#${messageId}`).remove();
+}
 function errorMessage (error) {
     console.log(err);
 }
-
 function testButton(e){
   e.preventDefault();
 }
-
 //scroll up and down function
 // https://www.aspsnippets.com/Articles/jQuery-Scroll-to-Bottom-Button-Smooth-Animated-Scroll-to-Bottom-of-page-example-using-jQuery.aspx
 $(function () {
-            $('#scrollToBottom').bind("click", function () {
-                $('html, body').animate({ scrollTop: $(document).height() }, 1200);
-                return false;
-            });
-            $('#scrollToTop').bind("click", function () {
-                $('html, body').animate({ scrollTop: 0 }, 1200);
-                return false;
-            });
-        });
+    $('#scrollToBottom').bind("click", function () {
+        $('html, body').animate({ scrollTop: $(document).height() }, 1200);
+        return false;
+    });
+    $('#scrollToTop').bind("click", function () {
+        $('html, body').animate({ scrollTop: 0 }, 1200);
+        return false;
+    });
+});
