@@ -64,7 +64,7 @@ img.msg-img:hover {
         float: none;
     }
     #message-form {
-        padding-right: 15px; 
+        padding-right: 15px;
     }
     #messageBoard {
         padding: 0 15px;
@@ -75,7 +75,7 @@ img.msg-img:hover {
         padding-left: 0;
         padding-right: 0;
     }
-    
+
 }
 /* Medium Screen Break Points ( 765 - px) */
 @media (min-width: 765px) {
@@ -94,7 +94,7 @@ img.msg-img:hover {
         margin: 10px 0;
     }
     #message-form {
-        padding-right: 0; 
+        padding-right: 0;
     }
     #messageBoard {
         padding: 0;
@@ -103,3 +103,17 @@ img.msg-img:hover {
         max-width: 900px;
     }
 }
+
+#scrollToTop, #scrollToBottom
+        {
+             cursor:pointer;
+             background-color:#0090CB;
+             display:inline-block;
+             height:40px;
+             width:40px;
+             color:#fff;
+             font-size:16pt;
+             text-align:center;
+             text-decoration:none;
+             line-height:40px;
+        }
