@@ -40,9 +40,6 @@ app.get('/api/messages', function index (req, res) {
     db.Message.find({}).sort(sortField).exec(function(err, allMessages) {
          res.json(allMessages);
     });
-//    db.Message.find({}, null, {sort: req.query.sort}, function(err, allMessages) {
-//        res.json(allMessages);
-//    });
 });
 
 // Post
@@ -51,12 +48,13 @@ app.post('/api/messages', function create (req, res) {
     db.Message.create(req.body, function (err, message) {
         if (err) { console.log('error', err); }
         res.json(message);
-    })
-})
+    });
+});
 
 //Delete
 app.delete('/api/messages/:id', function (req,res){
   var messageId = req.params.id;
+    console.log(req.params);
   console.log(messageId)
   db.Message.findOneAndRemove({ _id: messageId })
   .exec(function(err, foundMessage){

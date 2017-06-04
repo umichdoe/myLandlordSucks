@@ -12,7 +12,7 @@ $(document).ready(function() {
     // Sort By Date When Loading.
     $.ajax({
         method: 'GET',
-        url: '/api/messages?sort=date&direction=desc',
+        url: '/api/messages?sort=date',
         success: renderSeedMessages,
         error: errorMessage
     });
@@ -27,13 +27,19 @@ $(document).ready(function() {
             url: '/api/messages',
             data: formData,
             success: displayMessage
-        })
+        });
         // empties the form.
         $(this).trigger("reset");
     });
 
-
-
+    $('.delete-button').on('click', function(e){
+        let msgId = $(e.target).attr('data-msg-id');
+        $.ajax({
+            url: `/api/messages/${msgId}`,
+            method: 'DELETE',
+            success: deleteMessage
+        });
+    });
 
 
 
@@ -46,11 +52,12 @@ function renderSeedMessages(messagesArr) {
     });
 }
 
+// Show One.
 function displayMessage (messageObj) {
-    console.log('messageObj is: ', messageObj)
-    $('#messageBoard').append(`
-    <div class='container msg-wrapper'>
-        <img class='${messageObj._id} col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='https://eurlog.files.wordpress.com/2008/10/falling-down-house1.jpg' >
+    let imgURL = messageObj.imgURL || 'https://media.giphy.com/media/3R1dpjYOfnzJm/giphy.gif';
+    $('#messageBoard').prepend(`
+    <div id="${messageObj._id}" class='container msg-wrapper'>
+        <img class='${messageObj._id} col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
         <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-5 col-lg-5'>
             <h4 class='${messageObj._id}'>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
@@ -58,6 +65,7 @@ function displayMessage (messageObj) {
             <p>${moment(messageObj.date).format('LLL')}</p>
         </div>
     </div>`);
+    // <img> and <h4>
     $(`.${messageObj._id}`).on('click', function(e){
         $('.modal-body').html(`
           <form class='form-horizontal'>
@@ -74,30 +82,26 @@ function displayMessage (messageObj) {
                 <input id='rating' name='rating' class='col-xs-9' value='${messageObj.rating}'>
             </div>
             <div class="form-group">
+                <label for='imgURL' class='col-xs-2'>Image URL</label>
+                <input id='imgURL' name='imgURL' class='col-xs-9' value='${imgURL}'>
+            </div>
+            <div class="form-group">
                 <label for='message' class='col-xs-2'>Message</label>
                 <textarea id='message' name='message' class='col-xs-9'>${messageObj.message}</textarea>
             </div>
           </form>`);
-
+        $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
         $('#messageModal').modal();
-        $('.delete-button').on('click', function(e){
-          $.ajax({
-            url: `/api/messages/${messageObj._id}`,
-            method: 'DELETE',
-            success: deleteMessage
-
-          });
-        });console.log(`ajax url is ${messageObj._id}`)
-
     });
-}; // end of DisplayMessage function.
-function deleteMessage(data){
-  debugger
-  console.log(data)
-  var messageId = data._id;
-  console.log("data._id = " +  messageId);
-  $(`div[data-message-id="${messageId}"]`).remove();
 
+}; // end of DisplayMessage function.
+
+
+function deleteMessage(data){
+    console.log(data);
+    var messageId = data._id;
+    console.log("data._id = ",  messageId);
+    $(`#${messageId}`).remove();
 }
 
 
