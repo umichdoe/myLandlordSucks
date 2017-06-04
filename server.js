@@ -54,7 +54,16 @@ app.post('/api/messages', function create (req, res) {
     })
 })
 
-
+//Delete
+app.delete('/api/messages/:id', function (req,res){
+  var messageId = req.params.id;
+  console.log(messageId)
+  db.Message.findOneAndRemove({ _id: messageId })
+  .exec(function(err, foundMessage){
+    res.json(foundMessage);
+    console.log(foundMessage)
+  });
+});
 
 
 
