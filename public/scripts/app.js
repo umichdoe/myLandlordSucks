@@ -3,7 +3,7 @@
 
 $(document).ready(function() {
     console.log('sanity check!');
-    
+
     // Create New Form.
     $('.btn-new-msg').click(function() {
         $('.create-form').toggle('slow');
@@ -11,8 +11,8 @@ $(document).ready(function() {
         $('span.new-msg').toggle('slow');
         $(this).toggleClass('btn-danger');
     });
-    
-    
+
+
     $.ajax({
         method: 'GET',
         url: '/api/messages',
@@ -81,10 +81,27 @@ function displayMessage (messageObj) {
                 <textarea id='message' name='message' class='col-xs-9'>${messageObj.message}</textarea>
             </div>
           </form>`);
+
         $('#messageModal').modal();
+        $('.delete-button').on('click', function(e){
+          $.ajax({
+            url: `/api/messages/${messageObj._id}`,
+            method: 'DELETE',
+            success: deleteMessage
+
+          });
+        });console.log(`ajax url is ${messageObj._id}`)
+
     });
 }; // end of DisplayMessage function.
+function deleteMessage(data){
+  debugger
+  console.log(data)
+  var messageId = data._id;
+  console.log("data._id = " +  messageId);
+  $(`div[data-message-id="${messageId}"]`).remove();
 
+}
 
 
 function errorMessage (error) {
