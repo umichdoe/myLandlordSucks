@@ -1,6 +1,3 @@
-// this is our app.js file for the browser
-// this is line 2
-
 $(document).ready(function() {
     console.log('sanity check!');
     
@@ -12,10 +9,10 @@ $(document).ready(function() {
         $(this).toggleClass('btn-danger');
     });
     
-    
+    // Sort By Date When Loading.
     $.ajax({
         method: 'GET',
-        url: '/api/messages',
+        url: '/api/messages?sort=date&direction=desc',
         success: renderSeedMessages,
         error: errorMessage
     });

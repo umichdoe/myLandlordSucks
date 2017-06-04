@@ -30,9 +30,19 @@ app.get('/api', function apiIndex(req, res, next) {
 
 // Index of Messages
 app.get('/api/messages', function index (req, res) {
-    db.Message.find({}, function(err, allMessages) {
-        res.json(allMessages);
+    console.log('this is req.query: ', req.query);
+    let sortField = req.query.sort;
+    let direction = req.query.direction;
+    console.log(sortField);
+    if (sortField && direction === 'desc') {
+        sortField = '-' + sortField;
+    }
+    db.Message.find({}).sort(sortField).exec(function(err, allMessages) {
+         res.json(allMessages);
     });
+//    db.Message.find({}, null, {sort: req.query.sort}, function(err, allMessages) {
+//        res.json(allMessages);
+//    });
 });
 
 // Post
