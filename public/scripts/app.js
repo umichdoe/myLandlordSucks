@@ -8,7 +8,7 @@ $(document).ready(function() {
         $('span.new-msg').toggle('slow');
         $(this).toggleClass('btn-danger');
     });
-    
+
     // Sort By Date When Loading.
     $.ajax({
         method: 'GET',
@@ -112,3 +112,16 @@ function errorMessage (error) {
 function testButton(e){
   e.preventDefault();
 }
+
+//scroll up and down function
+// https://www.aspsnippets.com/Articles/jQuery-Scroll-to-Bottom-Button-Smooth-Animated-Scroll-to-Bottom-of-page-example-using-jQuery.aspx
+$(function () {
+            $('#scrollToBottom').bind("click", function () {
+                $('html, body').animate({ scrollTop: $(document).height() }, 1200);
+                return false;
+            });
+            $('#scrollToTop').bind("click", function () {
+                $('html, body').animate({ scrollTop: 0 }, 1200);
+                return false;
+            });
+        });
