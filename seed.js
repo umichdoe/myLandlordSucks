@@ -33,8 +33,8 @@ var messageList = _.times(20, () => {
             address: faker.address.city(),
             rating: Math.floor(Math.random() * 6),
             message: faker.lorem.paragraph(),
-            date: faker.date.past()
-            // image: faker.image.city()
+            date: faker.date.past(),
+            imgURL: faker.image.city()
         }
     }
 );

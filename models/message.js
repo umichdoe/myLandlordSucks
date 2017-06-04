@@ -5,6 +5,7 @@ var MessageSchema = new Schema({
   title: String,
   address: String,
   rating: Number,
+  imgURL: String,
   message: String,
   date: {
     type: Date,
