@@ -4,7 +4,7 @@
 $(document).ready(function() {
     console.log('sanity check!');
     
-// Create form is hidden on load. Clicking 'New Message' button will show it.
+    // Create New Form.
     $('.btn-new-msg').click(function() {
         $('.create-form').toggle('slow');
         $('span.close-msg').toggle('slow');
@@ -53,8 +53,8 @@ function displayMessage (messageObj) {
     console.log('messageObj is: ', messageObj)
     $('#messageBoard').append(`
     <div class='container msg-wrapper'>
-        <img class='${messageObj._id} col-xs-2 msg-img' src='https://eurlog.files.wordpress.com/2008/10/falling-down-house1.jpg' >
-        <div class='msg-content col-xs-8'>
+        <img class='${messageObj._id} col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='https://eurlog.files.wordpress.com/2008/10/falling-down-house1.jpg' >
+        <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-5 col-lg-5'>
             <h4 class='${messageObj._id}'>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
             <p>${messageObj.rating}</p>
@@ -62,16 +62,24 @@ function displayMessage (messageObj) {
         </div>
     </div>`);
     $(`.${messageObj._id}`).on('click', function(e){
-        $('p#messageBody').html("").append(`
-          <form>
-            <label for='title'>Title</label>
-            <input id='title' name='title' value='${messageObj.title}'>
-            <label for='address'>Address</label>
-            <input id='address' name='address' value='${messageObj.address}'>
-            <label for='rating'>Rating</label>
-            <input id='rating' name='rating' value='${messageObj.rating}'>
-            <label for='message'>Message</label>
-            <input id='message' name='message' value='${messageObj.message}'>
+        $('.modal-body').html(`
+          <form class='form-horizontal'>
+            <div class="form-group">
+                <label for='title' class='col-xs-2'>Title</label>
+                <input id='title' name='title' class='col-xs-9' value='${messageObj.title}'>
+            </div>
+            <div class="form-group">
+                <label for='address' class='col-xs-2'>Address</label>
+                <input id='address' name='address' class='col-xs-9' value='${messageObj.address}'>
+            </div>
+            <div class="form-group">
+                <label for='rating' class='col-xs-2'>Rating</label>
+                <input id='rating' name='rating' class='col-xs-9' value='${messageObj.rating}'>
+            </div>
+            <div class="form-group">
+                <label for='message' class='col-xs-2'>Message</label>
+                <textarea id='message' name='message' class='col-xs-9'>${messageObj.message}</textarea>
+            </div>
           </form>`);
         $('#messageModal').modal();
     });
@@ -85,11 +93,4 @@ function errorMessage (error) {
 
 function testButton(e){
   e.preventDefault();
-
 }
-
-
-//{ title: req.body.title,
-//address: req.body.address,
-//
-//}
