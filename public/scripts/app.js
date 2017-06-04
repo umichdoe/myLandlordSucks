@@ -8,7 +8,7 @@ $(document).ready(function() {
         $('span.new-msg').toggle('slow');
         $(this).toggleClass('btn-danger');
     });
-    
+
     // Sort By Date When Loading.
     $.ajax({
         method: 'GET',
@@ -41,10 +41,54 @@ $(document).ready(function() {
         });
     });
 
+    $('.update-button').on('click', function(e){
+        console.log("click working!!");
+        let formData = $(this).serialize();
+        console.log('formData here: ', formData);
 
+        let msgId = $(e.target).attr('data-msg-id');
 
+        console.log(`msgID here: ${msgId}`, );
+
+        // let revisedData = $(this).serialize();
+
+        // console.log('This is revisedData: ' + revisedData);
+
+        $.ajax({
+            url: `/api/messages/${msgId}`,
+            method: 'PUT',
+            data: formData,
+            success: updateMessage
+
+        });
+    });
 
 }); // end of document ready
+
+function deleteMessage(data){
+    console.log(data);
+    var messageId = data._id;
+    console.log("data._id = ",  messageId);
+    $(`#${messageId}`).remove();
+}
+
+function updateMessage(data){
+    console.log("Data from UpdateMessage function " + data);
+    var messageId = data._id;
+    console.log("data._id = ",  messageId);
+    // $(`#${messageId}`).update();
+}
+
+
+
+
+
+
+
+
+
+
+
 
 function renderSeedMessages(messagesArr) {
     messagesArr.forEach(function(messageObj) {
@@ -90,6 +134,7 @@ function displayMessage (messageObj) {
                 <textarea id='message' name='message' class='col-xs-9'>${messageObj.message}</textarea>
             </div>
           </form>`);
+        $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
         $('#messageModal').modal();
     });
@@ -97,12 +142,8 @@ function displayMessage (messageObj) {
 }; // end of DisplayMessage function.
 
 
-function deleteMessage(data){
-    console.log(data);
-    var messageId = data._id;
-    console.log("data._id = ",  messageId);
-    $(`#${messageId}`).remove();
-}
+
+
 
 
 function errorMessage (error) {

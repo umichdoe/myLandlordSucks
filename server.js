@@ -64,6 +64,16 @@ app.delete('/api/messages/:id', function (req,res){
 });
 
 
+// PUT update
+app.put('/api/messages/:id', function update(req, res){
+  console.log(req.params.id);
+  db.Message.findByIdAndUpdate({_id: req.params.id},req.body).then(function(message) {
+    db.Message.findOne({_id: req.params.id}).then(function (message) {
+      res.send(message);
+    });
+  });
+});
+
 
 
 
