@@ -15,16 +15,15 @@ header > h1 {
 }
 #message-form {
     padding-right: 0;
+    display: flex;
+    flex-direction: column;
 }
 .btn-new-msg {
     min-width: 200px;
-    float: right;
+    margin: 2em 0;
 }
 .close-msg {
     display: none;
-}
-.btn-new-msg {
-    margin: 2em 0;
 }
 .create-form {
     display: none;
@@ -32,10 +31,14 @@ header > h1 {
 .btn-primary {
   margin-right: 20px;
 }
+.submit-button {
+    width: 100%;
+}
 .msg-wrapper {
     background-color: #fff;
     margin: 1em 0;
     border-radius: .3em;
+    padding-left: 0;
 }
 img.msg-img {
     padding-left: 0;
@@ -46,14 +49,57 @@ img.msg-img {
 img.msg-img:hover {
     opacity: .8;
 }
-
-.container.msg-wrapper {
-    padding-left: 0;
-}
 .msg-content {
     padding-bottom: 5px;
 }
 .msg-content > h4:hover {
     cursor: pointer;
     color: firebrick;
+}
+
+/* Small Screen Break Points ( 0 - 765 px) */
+@media (min-width: 300px) {
+    .btn-new-msg {
+        width: 100%;
+        float: none;
+    }
+    #message-form {
+        padding-right: 15px; 
+    }
+    #messageBoard {
+        padding: 0 15px;
+    }
+    .form-horizontal .form-group {
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+}
+/* Medium Screen Break Points ( 765 - px) */
+@media (min-width: 765px) {
+    .btn-new-msg {
+        width: 150px;
+        float: right;
+        align-self: flex-end;
+    }
+    #submit-div {
+        width: 100%;
+        text-align: center;
+    }
+    .submit-button {
+        width: 200px;
+        padding: 5px;
+        margin: 10px 0;
+    }
+    #message-form {
+        padding-right: 0; 
+    }
+    #messageBoard {
+        padding: 0;
+    }
+    .container {
+        max-width: 900px;
+    }
 }
