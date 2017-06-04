@@ -56,7 +56,9 @@ img.msg-img:hover {
     cursor: pointer;
     color: firebrick;
 }
-
+i.fa-2x {
+    color: goldenrod;
+}
 /* Small Screen Break Points ( 0 - 765 px) */
 @media (min-width: 300px) {
     .btn-new-msg {

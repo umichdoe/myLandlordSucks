@@ -121,8 +121,8 @@ function displayMessage (messageObj) {
 }; 
 // Display Rating Stars.
 function displayStars(msgObj) {
-    let empty = '<i class="fa fa-star-o" aria-hidden="true"></i>';
-    let full = '<i class="fa fa-star" aria-hidden="true"></i>';
+    let empty = '<i class="fa fa-star-o fa-2x" aria-hidden="true"></i>';
+    let full = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
     switch (msgObj.rating) {
         case 0:
             $(`.stars-${msgObj._id}`).html(`<span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
