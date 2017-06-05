@@ -40,10 +40,10 @@ $(document).ready(function() {
             success: deleteMessage
         });
     });
-
     $('.update-button').on('click', function(e){
+        e.preventDefault();
         console.log("click working!!");
-        let formData = $(this).serialize();
+        let formData = $('.modal-form').serialize();
         console.log('formData here: ', formData);
 
         let msgId = $(e.target).attr('data-msg-id');
@@ -55,9 +55,10 @@ $(document).ready(function() {
             method: 'PUT',
             data: formData,
             success: updateMessage
-
         });
     });
+
+
 
 }); // end of $(document).ready(function()).
 
@@ -95,7 +96,7 @@ function displayMessage (messageObj) {
         $('input#imgURL').attr('value', `${imgURL}`);
         $('div#stars').addClass(`stars-${messageObj._id}`);
         $('textarea#message').text(`${messageObj.message}`);
-        
+
         displayStars(messageObj);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
