@@ -89,7 +89,7 @@ function displayMessage (messageObj) {
         </div>
     </div>`);
     displayStars(messageObj);
-    // Add this form to Modal when <img> or <h4> is clicked.
+    // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
         $('input#title').attr('value', `${messageObj.title}`);
         $('input#address').attr('value', `${messageObj.address}`);
