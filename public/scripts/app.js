@@ -90,29 +90,12 @@ function displayMessage (messageObj) {
     displayStars(messageObj);
     // Add this form to Modal when <img> or <h4> is clicked.
     $(`.${messageObj._id}`).on('click', function(e) {
-        $('.modal-body').html(`
-          <form class='form-horizontal'>
-            <div class="form-group">
-                <label for='title' class='col-xs-2'>Title</label>
-                <input id='title' name='title' class='col-xs-9' value='${messageObj.title}'>
-            </div>
-            <div class="form-group">
-                <label for='address' class='col-xs-2'>Address</label>
-                <input id='address' name='address' class='col-xs-9' value='${messageObj.address}'>
-            </div>
-            <div class="form-group">
-                <label for='rating' class='col-xs-2'>Rating</label>
-                <div class='stars-${messageObj._id}'></div>
-            </div>
-            <div class="form-group">
-                <label for='imgURL' class='col-xs-2'>Image URL</label>
-                <input id='imgURL' name='imgURL' class='col-xs-9' value='${imgURL}'>
-            </div>
-            <div class="form-group">
-                <label for='message' class='col-xs-2'>Message</label>
-                <textarea id='message' name='message' class='col-xs-9'>${messageObj.message}</textarea>
-            </div>
-          </form>`);
+        $('input#title').attr('value', `${messageObj.title}`);
+        $('input#address').attr('value', `${messageObj.address}`);
+        $('input#imgURL').attr('value', `${imgURL}`);
+        $('div#stars').addClass(`stars-${messageObj._id}`);
+        $('textarea#message').text(`${messageObj.message}`);
+        
         displayStars(messageObj);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
@@ -146,10 +129,9 @@ function displayStars(msgObj) {
 }
 // Update.
 function updateMessage(data){
-    console.log("Data from UpdateMessage function " + data);
-    var messageId = data._id;
-    console.log("data._id = ",  messageId);
-    // $(`#${messageId}`).update();
+    $(`[ id="${data._id}" ]`).remove();
+    displayMessage(data);
+    $('#messageModal').modal('hide');
 }
 // Delete One.
 function deleteMessage(data){
