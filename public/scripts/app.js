@@ -80,9 +80,9 @@ function displayMessage (messageObj) {
     // Add this to Message Board.
     $('#messageBoard').prepend(`
     <div id="${messageObj._id}" class='container msg-wrapper'>
-        <img class='${messageObj._id} col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
+        <img class='col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
         <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-5 col-lg-5'>
-            <h4 class='${messageObj._id}'>${messageObj.title}</h4>
+            <h4>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
             <p><div class='stars-${messageObj._id}'></div></p>
             <p>${moment(messageObj.date).format('LLL')}</p>
@@ -90,7 +90,7 @@ function displayMessage (messageObj) {
     </div>`);
     displayStars(messageObj);
     // Add this form to Modal when <img> or <h4> is clicked.
-    $(`.${messageObj._id}`).on('click', function(e) {
+    $(`#${messageObj._id}`).on('click', function(e) {
         $('input#title').attr('value', `${messageObj.title}`);
         $('input#address').attr('value', `${messageObj.address}`);
         $('input#imgURL').attr('value', `${imgURL}`);
