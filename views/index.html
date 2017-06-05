@@ -119,9 +119,31 @@
         </button>
         </div>
         <div class="modal-body">
-<!--          <p id='modal-body'>-->
+            
           <!--   Modal Content   -->
-<!--          </p>-->
+            <form class='form-horizontal'>
+            <div class="form-group">
+                <label for='title' class='col-xs-2'>Title</label>
+                <input id='title' name='title' class='col-xs-9'>
+            </div>
+            <div class="form-group">
+                <label for='address' class='col-xs-2'>Address</label>
+                <input id='address' name='address' class='col-xs-9'>
+            </div>
+            <div class="form-group">
+                <label for='rating' class='col-xs-2'>Rating</label>
+                <div id='stars'></div>
+            </div>
+            <div class="form-group">
+                <label for='imgURL' class='col-xs-2'>Image URL</label>
+                <input id='imgURL' name='imgURL' class='col-xs-9'>
+            </div>
+            <div class="form-group">
+                <label for='message' class='col-xs-2'>Message</label>
+                <textarea id='message' name='message' class='col-xs-9'></textarea>
+            </div>
+          </form>
+            
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary update-button">Save changes</button>
