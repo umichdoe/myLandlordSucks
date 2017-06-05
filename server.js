@@ -2,7 +2,7 @@ let express = require('express'),
     app = express(),
     db = require('./models'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
     _ = require('lodash');
 
 app.use(express.static(__dirname + '/public'));

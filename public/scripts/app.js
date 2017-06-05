@@ -40,10 +40,10 @@ $(document).ready(function() {
             success: deleteMessage
         });
     });
-
     $('.update-button').on('click', function(e){
+        e.preventDefault();
         console.log("click working!!");
-        let formData = $(this).serialize();
+        let formData = $('.modal-form').serialize();
         console.log('formData here: ', formData);
 
         let msgId = $(e.target).attr('data-msg-id');
@@ -55,9 +55,10 @@ $(document).ready(function() {
             method: 'PUT',
             data: formData,
             success: updateMessage
-
         });
     });
+
+
 
 }); // end of $(document).ready(function()).
 
@@ -91,7 +92,7 @@ function displayMessage (messageObj) {
     // Add this form to Modal when <img> or <h4> is clicked.
     $(`.${messageObj._id}`).on('click', function(e) {
         $('.modal-body').html(`
-          <form class='form-horizontal'>
+          <form class='form-horizontal modal-form'>
             <div class="form-group">
                 <label for='title' class='col-xs-2'>Title</label>
                 <input id='title' name='title' class='col-xs-9' value='${messageObj.title}'>
@@ -149,7 +150,10 @@ function updateMessage(data){
     console.log("Data from UpdateMessage function " + data);
     var messageId = data._id;
     console.log("data._id = ",  messageId);
-    // $(`#${messageId}`).update();
+    $(`[ id="${data._id}" ]`).remove();
+    displayMessage(data);
+    $('#messageModal').modal('hide');
+    
 }
 // Delete One.
 function deleteMessage(data){
