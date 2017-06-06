@@ -115,9 +115,11 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
         padding-left: 0;
         padding-right: 0;
     }
+/*
     img.msg-img {
         width: 100%;
     }
+*/
 
 }
 /* Medium Screen Break Points ( 765 - px) */
