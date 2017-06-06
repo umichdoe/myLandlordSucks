@@ -42,6 +42,16 @@ app.get('/api/messages', function index (req, res) {
     });
 });
 
+
+// Show One
+app.get('/api/messages/:id', function index (req, res) {
+    db.Message.find({ _id: req.params.id}, function(err, foundMessage){
+        console.log('foundMessage: ', foundMessage);
+        console.log('req.params.id: ', req.params.id);
+        res.json(foundMessage);
+    })
+});
+
 // Post
 app.post('/api/messages', function create (req, res) {
     console.log(req.body);

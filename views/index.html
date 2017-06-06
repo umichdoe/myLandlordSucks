@@ -91,6 +91,7 @@
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-imgURL">Image URL</label>
+              <span class='img-file-extension'>( jpg, jpeg, png, tiff, gif, svg )</span>
               <div>
                 <input id="create-imgURL" name="imgURL" type="text" placeholder="" class="form-control input-md">
               </div>
@@ -134,6 +135,18 @@
         <div class="modal-body">
 
           <!--   Modal Content   -->
+            <!-- put these in a containing div with class readable-modal-body -->
+            <div class="readable-modal-body">
+                <img class='readable-img' >
+                <h4 class='readable-title'></h4>
+                <p class='readable-address'></p>
+                <p class='readable-rating'></p>
+                <p class='readable-msg'></p>
+            </div>
+
+            
+            <!-- here, add a containing div with class editable-modal-body -->
+            <div class="editable-modal-body"> 
             <form class='form-horizontal modal-form'>
               <div class="form-group">
                   <img id="myImg" >
@@ -158,11 +171,15 @@
                 <label for='message' class='col-xs-2'>Message</label>
                 <textarea id='message' name='message' class='col-xs-9'></textarea>
             </div>
-          </form>
+          </form>  
+            
+        </div>         
+  
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary update-button">Save changes</button>
+          <button type="button" class="btn btn-warning edit-button">Edit</button>
+          <button type="button" class="btn btn-info update-button">Save changes</button>
           <button type="button" class="btn btn-danger delete-button" data-dismiss="modal">Delete</button>
         </div>
       </div>
