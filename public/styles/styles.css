@@ -132,7 +132,7 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
         padding: 0;
     }
     .container {
-        max-width: 900px;
+        max-width: 700px;
     }
 }
 
