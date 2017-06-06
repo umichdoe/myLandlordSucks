@@ -102,7 +102,7 @@ function displayMessage (messageObj) {
     $('#messageBoard').prepend(`
     <div id="${messageObj._id}" class='container msg-wrapper'>
         <img class='col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
-        <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-5 col-lg-5'>
+        <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-9 col-lg-9'>
             <h4>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
             <p>
