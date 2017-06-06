@@ -22,46 +22,80 @@ var db = require("./models");
 // lodash for the times do util function
 var _ = require('lodash');
 //library to create fake https://www.npmjs.com/package/faker
-var faker = require('faker');
+// var faker = require('faker');
 
 // this will fill the messageList with 20 objects that you can turn into models
-var messageList = _.times(20, () => {
-        return {
-            // you can follow the list at npm
-            // the syntax is faker.category.noun()
-            title: faker.lorem.words(),
-            address: faker.address.city(),
-            rating: Math.floor(Math.random() * 6),
-            message: faker.lorem.paragraph(),
-            date: faker.date.past(),
-            imgURL: faker.image.city()
-        }
-    }
-);
+var messageList = [];
 
 messageList.push({
-    title: "My Landlords dog attacked me!",
-    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
-    rating: 0,
-    message: "I was statying at an AirBnB"
+  title: "My Landlords dog attacked me!",
+  address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
+  rating: 0,
+  imgURL: "https://s-media-cache-ak0.pinimg.com/736x/d3/68/74/d36874eee05c8b7500747cc849cb9c34.jpg",
+  message: "I was statying at an AirBnB"
 });
 messageList.push({
-    title: "My Lan22222222dlords dog attacked me!",
-    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
-    rating: 0,
-    message: "I was statying at an AirBnB"
+  title: "The roof has been leaking for 3 months!!",
+  address: "999 Main St., San Francisco, CA 94103",
+  rating: 0,
+  imgURL: "http://noehill.com/sf/landmarks/haight/delano_house_thumb.jpg",
+  message: "It rains every day in my house."
 });
 messageList.push({
-    title: "My Landlords 3333 dog attacked me!",
-    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
-    rating: 0,
-    message: "I was statying at an AirBnB"
+  title: "Anyone want to take over my lease? Please!",
+  address: "103 Harrison St. 19th Fl, San Francisco, CA 94101",
+  rating: 0,
+  imgURL: "https://static01.nyt.com/images/2010/11/22/nyregion/22cityroom-ready/22cityroom-ready-blog480.jpg",
+  message: "I will pay you to live here."
 });
 messageList.push({
-    title: "My Landlords 44444 dog attacked me!",
-    address: "225 Bush St. 5th Floor, San Francisco, CA 94104",
-    rating: 0,
-    message: "I was statying at an AirBnB"
+  title: "The dishwasher is broken.",
+  address: "1234 sunrise st. San Francisco, CA 94321",
+  rating: 3,
+  imgURL: "https://media.giphy.com/media/3o6ZsUW74p4cvyD2ow/giphy.gif",
+  message: "and my landlord says he can't fix it soon for us.",
+});
+messageList.push({
+  title: "There's a man dancing on our roof.",
+  address: "85 Texas st. San Diego, CA 92111",
+  rating: 5,
+  imgURL: "https://media.giphy.com/media/TjbN05AFbgOnm/giphy.gif",
+  message: "I wanna have a conversation with him but he wouldn't come down.",
+});
+messageList.push({
+  title: "My house is on fire.",
+  address: "749 Baldwin Ave, San Francisco",
+  rating: 1,
+  imgURL: "https://media.giphy.com/media/3oeSAQoA5PLG4jLTos/giphy.gif",
+  message: "and I can't contact my landlord.",
+});
+messageList.push({
+  title: "My landlord's dog slapped me in the face.",
+  address: "324 Second Ave. New York, NY 10001",
+  rating: 2,
+  imgURL: "https://media.giphy.com/media/AtwrcuevjPsys/giphy.gif",
+  message: "It still hurts.",
+});
+messageList.push({
+  title: "Landlord sux",
+  address: "1234 Street Ave.",
+  rating: 2,
+  imgURL: "http://www.pixatu.com/wp-content/uploads/2017/03/wallpaper-cat-images-a%C2%B7-stock-photos-with-animal-emage-high-resolution-for-laptop.jpg",
+  message: "The landlord's cat kept staring at me.",
+});
+messageList.push({
+  title: "The landlord",
+  address: "1243 Avenue St. Mountain View, CA",
+  rating: 0,
+  imgURL: "https://media.giphy.com/media/moF5QkzLJGD04/giphy.gif",
+  message: "The landlord's monkey took my drone down.",
+});
+messageList.push({
+  title: "I think my landlord is partying in Europe.",
+  address: "838 1st St. 5th Floor, San Francisco, CA 94110",
+  rating: 0,
+  imgURL: "https://media-cdn.tripadvisor.com/media/photo-s/07/1e/49/10/disgusting-bathrooms.jpg",
+  message: "She's never around."
 });
 
 console.log('this is db.Message: ', db.Message);
