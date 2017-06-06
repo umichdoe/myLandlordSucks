@@ -58,6 +58,7 @@ img#myImg {
     width: 100%;
 }
 img.msg-img {
+    min-height: 163px;
     padding-left: 0;
     border-top-left-radius: .3em;
     border-bottom-left-radius: .3em;
