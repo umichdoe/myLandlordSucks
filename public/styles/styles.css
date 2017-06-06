@@ -97,8 +97,16 @@ div.stars-rating-4 i.fa-star:nth-child(-n+4) {
 div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
     color: #d32323;
 }
-/* Small Screen Break Points ( 0 - 765 px) */
-@media (min-width: 300px) {
+/* Small Screen Break Points */
+@media (max-width: 765px) {
+    #messageBoard > .msg-wrapper {
+        padding-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .msg-wrapper > img {
+        padding-right: 0;
+    }
     .btn-new-msg {
         width: 100%;
         float: none;
@@ -109,6 +117,7 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
     #messageBoard {
         padding: 0 15px;
     }
+    
     .form-horizontal .form-group {
         margin-left: 0;
         margin-right: 0;
@@ -122,8 +131,8 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
 */
 
 }
-/* Medium Screen Break Points ( 765 - px) */
-@media (min-width: 765px) {
+/* Medium Screen Break Points */
+@media (max-width: 1300px) {
     .btn-new-msg {
         width: 150px;
         float: right;
