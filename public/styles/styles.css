@@ -3,16 +3,9 @@ body {
 }
 header {
     background-color: firebrick;
-}
-
-.header {
-  border-style: dashed;
-  border-color: purple;
-  background-color: firebrick;
-}
-.logo {
-  width: 75px;
-  height: auto;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 50px;
 }
 header > h1 {
     font-family: 'Gloria Hallelujah', sans-serif;
@@ -20,12 +13,17 @@ header > h1 {
     text-align: left;
     color: #fff;
     font-weight: bolder;
-    margin: 0;
-    padding: .2em 0 .5em 0;
-    border-style: dashed;
-    border-color: yellow;
     display: inline;
 }
+
+header > .logo {
+    width: 60px;
+    height: auto;
+    padding-bottom: 20px;
+    margin-right: 10px;
+}
+
+
 #message-form {
     padding-right: 0;
     display: flex;
