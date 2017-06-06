@@ -58,7 +58,26 @@ $(document).ready(function() {
         });
     });
 
-
+    // Stars Hover State.
+    $('.create-form i.fa-star').hover( function() {
+        $(this).closest('div').removeClass();
+        $(this).css('cursor', 'pointer');
+        let starId = $(this).attr('data-star-id');
+        $(this).closest('div').addClass(`stars-rating-${starId}`);
+    });
+    $('.create-form i.fa-star').mouseleave( function() {
+        $(this).closest('div').removeClass();
+        let div = $(this).closest('div');
+        let dataClickedValue = div.attr('data-clicked');
+        if (dataClickedValue) {
+            div.addClass(dataClickedValue);
+        }
+    });
+    $('.create-form i.fa-star').on('click', function() {
+        let starId = $(this).attr('data-star-id');
+        $(this).closest('div').attr('data-clicked', `stars-rating-${starId}`);
+        $('select').val(starId);
+    });
 
 
 }); // end of $(document).ready(function()).
@@ -79,13 +98,18 @@ function renderSeedMessages(messagesArr) {
 function displayMessage (messageObj) {
     let imgURL = messageObj.imgURL || 'https://media.giphy.com/media/3R1dpjYOfnzJm/giphy.gif';
     // Add this to Message Board.
+    let star = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
     $('#messageBoard').prepend(`
     <div id="${messageObj._id}" class='container msg-wrapper'>
         <img class='col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
         <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-5 col-lg-5'>
             <h4>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
-            <p><div class='stars-${messageObj._id}'></div></p>
+            <p>
+                <div class='stars stars-rating-${messageObj.rating}'>
+                    ${star}${star}${star}${star}${star}
+                </div>
+            </p>
             <p>${moment(messageObj.date).format('LLL')}</p>
         </div>
     </div>`);
@@ -107,7 +131,7 @@ function displayMessage (messageObj) {
 };
 // Display Rating Stars.
 function displayStars(msgObj) {
-    let empty = '<i class="fa fa-star-o fa-2x" aria-hidden="true"></i>';
+    let empty = '<i class="fa fa-star-o fa-2x" aria-hidden="true"></i>'
     let full = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
     switch (msgObj.rating) {
         case 0:
