@@ -118,16 +118,30 @@ i.fa-2x {
     }
 }
 
-#scrollToTop, #scrollToBottom
+#scrollToBottom
+{
+  cursor:pointer;
+  background-color:black;
+  display:inline-block;
+  height:40px;
+  width:40px;
+  color:#fff;
+  font-size:16pt;
+  text-align:center;
+  text-decoration:none;
+  line-height:40px;
+  float: right;
+}
+#scrollToTop
         {
-             cursor:pointer;
-             background-color:#0090CB;
-             display:inline-block;
-             height:40px;
-             width:40px;
-             color:#fff;
-             font-size:16pt;
-             text-align:center;
-             text-decoration:none;
-             line-height:40px;
+          cursor:pointer;
+          background-color:#0090CB;
+          display:inline-block;
+          height:40px;
+          width:40px;
+          color:#fff;
+          font-size:16pt;
+          text-align:center;
+          text-decoration:none;
+          line-height:40px;
         }
