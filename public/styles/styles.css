@@ -70,6 +70,9 @@ img.msg-img:hover {
     font-size: .8em;
     font-weight: bold;
 }
+img.readable-img {
+    width: 100%;
+}
 .msg-content {
     padding-bottom: 5px;
 }
@@ -111,6 +114,9 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
         margin-right: 0;
         padding-left: 0;
         padding-right: 0;
+    }
+    img.msg-img {
+        width: 100%;
     }
 
 }
