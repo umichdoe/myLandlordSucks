@@ -66,6 +66,10 @@ img.msg-img {
 img.msg-img:hover {
     opacity: .8;
 }
+.img-file-extension {
+    font-size: .8em;
+    font-weight: bold;
+}
 .msg-content {
     padding-bottom: 5px;
 }

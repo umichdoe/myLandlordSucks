@@ -31,15 +31,23 @@ $(document).ready(function() {
         // Empties the form.
         $(this).trigger("reset");
     });
-
-    $('.delete-button').on('click', function(e){
-        let msgId = $(e.target).attr('data-msg-id');
+    // Edit Button.
+    $('.edit-button').on('click', function(e) {
+        e.preventDefault();
+        // do this
+        $('.readable-modal-body').hide();
+        $('.editable-modal-body').show();
+        // don't do next thing, instead do above
+        let msgId = $(this).attr('data-msg-id');
         $.ajax({
+            method: 'GET',
             url: `/api/messages/${msgId}`,
-            method: 'DELETE',
-            success: deleteMessage
+            success: prepopulateForm,
+            error: errorMessage
         });
+        console.log(msgId);
     });
+    // Update Button.
     $('.update-button').on('click', function(e){
         e.preventDefault();
         console.log("click working!!");
@@ -56,6 +64,18 @@ $(document).ready(function() {
             data: formData,
             success: updateMessage
         });
+    });
+    // Delete Button.
+    $('.delete-button').on('click', function(e){
+        let confirmMsg = confirm('Are you sure you want to delete?');
+        if (confirmMsg) {
+            let msgId = $(e.target).attr('data-msg-id');
+            $.ajax({
+                url: `/api/messages/${msgId}`,
+                method: 'DELETE',
+                success: deleteMessage
+            });
+        }
     });
 
     // Stars Hover State.
@@ -97,33 +117,38 @@ function renderSeedMessages(messagesArr) {
 // Show One.
 function displayMessage (messageObj) {
     let imgURL = messageObj.imgURL || 'https://media.giphy.com/media/3R1dpjYOfnzJm/giphy.gif';
-    // Add this to Message Board.
+    // Add a New Message to Message Board.
     let star = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
+    let starsHTML = `<p>
+                        <div class='stars stars-rating-${messageObj.rating}'>
+                            ${star}${star}${star}${star}${star}
+                        </div>
+                     </p>`
     $('#messageBoard').prepend(`
     <div id="${messageObj._id}" class='container msg-wrapper'>
-        <img class='col-xs-12 col-sm-4 col-md-3 col-lg-3 msg-img' src='${imgURL}' >
-        <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-9 col-lg-9'>
+        <img class='col-xs-12 col-sm-4 col-md-3 col-lg-4 msg-img' src='${imgURL}' >
+        <div class='msg-content col-12 col-xs-12 col-sm-8 col-md-9 col-lg-8'>
             <h4>${messageObj.title}</h4>
             <p>${messageObj.address}</p>
-            <p>
-                <div class='stars stars-rating-${messageObj.rating}'>
-                    ${star}${star}${star}${star}${star}
-                </div>
-            </p>
+            ${starsHTML}
             <p>${moment(messageObj.date).format('LLL')}</p>
         </div>
     </div>`);
     displayStars(messageObj);
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
-        $('input#title').attr('value', `${messageObj.title}`);
-        $('input#address').attr('value', `${messageObj.address}`);
-        $('input#imgURL').attr('value', `${imgURL}`);
-        $('div#stars').addClass(`stars-${messageObj._id}`);
-        $('textarea#message').text(`${messageObj.message}`);
-        $('img#myImg').attr('src', `${messageObj.imgURL}`)
-
-        displayStars(messageObj);
+        console.log('messageObj here: ', messageObj);
+        
+        $('.editable-modal-body').hide();
+        $('.readable-modal-body').show();
+        
+        $('.readable-img').attr('src', `${messageObj.imgURL}`)
+        $('.readable-title').html(messageObj.title);
+        $('.readable-address').html(messageObj.address);
+        $('.readable-rating').html(starsHTML);
+        $('.readable-msg').html(messageObj.message);
+        
+        $('.edit-button').attr('data-msg-id', `${messageObj._id}`);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
         $('#messageModal').modal();
@@ -153,6 +178,16 @@ function displayStars(msgObj) {
             $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span>`);
             break;
     }
+}
+// Edit.
+function prepopulateForm(messageObj) {
+    console.log('this is messageObj[0] ', messageObj[0]);
+    $('input#title').attr('value', `${messageObj[0].title}`);
+    $('input#address').attr('value', `${messageObj[0].address}`);
+    $('input#imgURL').attr('value', `${messageObj[0].imgURL}`);
+    $('div#stars').addClass(`stars-${messageObj[0]._id}`);
+    $('textarea#message').text(`${messageObj[0].message}`);
+    $('img#myImg').attr('src', `${messageObj[0].imgURL}`);
 }
 // Update.
 function updateMessage(data){
@@ -185,3 +220,4 @@ $(function () {
         return false;
     });
 });
+
