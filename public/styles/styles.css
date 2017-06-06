@@ -15,15 +15,12 @@ header > h1 {
     font-weight: bolder;
     display: inline;
 }
-
 header > .logo {
     width: 60px;
     height: auto;
     padding-bottom: 20px;
     margin-right: 10px;
 }
-
-
 #message-form {
     padding-right: 0;
     display: flex;
@@ -66,8 +63,26 @@ img.msg-img:hover {
 .msg-content {
     padding-bottom: 5px;
 }
-i.fa-2x {
-    color: goldenrod;
+i.fa-star {
+    color: #ccc;
+}
+select#create-rating {
+    display: none;
+}
+div.stars-rating-1 i.fa-star:first-child {
+    color: #f2bd79;
+}
+div.stars-rating-2 i.fa-star:nth-child(-n+2) {
+    color: #fec011;
+}
+div.stars-rating-3 i.fa-star:nth-child(-n+3) {
+    color: #ff9242;
+}
+div.stars-rating-4 i.fa-star:nth-child(-n+4) {
+    color: #f15c4f;
+}
+div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
+    color: #d32323;
 }
 /* Small Screen Break Points ( 0 - 765 px) */
 @media (min-width: 300px) {
