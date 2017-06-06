@@ -57,7 +57,7 @@ $(document).ready(function() {
             success: updateMessage
         });
     });
-    
+
 
 
 
@@ -97,13 +97,14 @@ function displayMessage (messageObj) {
         $('input#imgURL').attr('value', `${imgURL}`);
         $('div#stars').addClass(`stars-${messageObj._id}`);
         $('textarea#message').text(`${messageObj.message}`);
+        $('img#myImg').attr('src', `${messageObj.imgURL}`)
 
         displayStars(messageObj);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
         $('#messageModal').modal();
     });
-}; 
+};
 // Display Rating Stars.
 function displayStars(msgObj) {
     let empty = '<i class="fa fa-star-o fa-2x" aria-hidden="true"></i>';
@@ -112,19 +113,19 @@ function displayStars(msgObj) {
         case 0:
             $(`.stars-${msgObj._id}`).html(`<span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
             break;
-        case 1: 
+        case 1:
             $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
             break;
-        case 2: 
+        case 2:
             $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
             break;
-        case 3: 
+        case 3:
             $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${empty}</span><span>${empty}</span>`);
             break;
-        case 4: 
+        case 4:
             $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${empty}</span>`);
             break;
-        case 5: 
+        case 5:
             $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span>`);
             break;
     }
