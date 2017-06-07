@@ -32,24 +32,12 @@ $(document).ready(function() {
         $(this).trigger("reset");
     });
     // Edit Button.
-    $('.edit-button').on('click', function(e) {
-        e.preventDefault();
-        // do this
+    $('.edit-button').on('click', function() {
         $('.readable-modal-body').hide();
         $('.editable-modal-body').show();
-        // don't do next thing, instead do above
-        let msgId = $(this).attr('data-msg-id');
-        $.ajax({
-            method: 'GET',
-            url: `/api/messages/${msgId}`,
-            success: prepopulateForm,
-            error: errorMessage
-        });
-        console.log(msgId);
     });
     // Update Button.
     $('.update-button').on('click', function(e){
-        e.preventDefault();
         console.log("click working!!");
         let formData = $('.modal-form').serialize();
         console.log('formData here: ', formData);
@@ -79,13 +67,13 @@ $(document).ready(function() {
     });
 
     // Stars Hover State.
-    $('.create-form i.fa-star').hover( function() {
+    $('.star-form i.fa-star').hover( function () {
         $(this).closest('div').removeClass();
         $(this).css('cursor', 'pointer');
         let starId = $(this).attr('data-star-id');
         $(this).closest('div').addClass(`stars-rating-${starId}`);
     });
-    $('.create-form i.fa-star').mouseleave( function() {
+    $('.star-form i.fa-star').mouseleave( function () {
         $(this).closest('div').removeClass();
         let div = $(this).closest('div');
         let dataClickedValue = div.attr('data-clicked');
@@ -93,7 +81,7 @@ $(document).ready(function() {
             div.addClass(dataClickedValue);
         }
     });
-    $('.create-form i.fa-star').on('click', function() {
+    $('.star-form i.fa-star').on('click', function() {
         let starId = $(this).attr('data-star-id');
         $(this).closest('div').attr('data-clicked', `stars-rating-${starId}`);
         $('select').val(starId);
@@ -134,7 +122,6 @@ function displayMessage (messageObj) {
             <p>${moment(messageObj.date).format('LLL')}</p>
         </div>
     </div>`);
-    displayStars(messageObj);
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
         console.log('messageObj here: ', messageObj);
@@ -152,42 +139,20 @@ function displayMessage (messageObj) {
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
         $('#messageModal').modal();
+        prepopulateForm(messageObj);
     });
 };
-// Display Rating Stars.
-function displayStars(msgObj) {
-    let empty = '<i class="fa fa-star-o fa-2x" aria-hidden="true"></i>'
-    let full = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
-    switch (msgObj.rating) {
-        case 0:
-            $(`.stars-${msgObj._id}`).html(`<span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
-            break;
-        case 1:
-            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
-            break;
-        case 2:
-            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${empty}</span><span>${empty}</span><span>${empty}</span>`);
-            break;
-        case 3:
-            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${empty}</span><span>${empty}</span>`);
-            break;
-        case 4:
-            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${empty}</span>`);
-            break;
-        case 5:
-            $(`.stars-${msgObj._id}`).html(`<span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span><span>${full}</span>`);
-            break;
-    }
-}
 // Edit.
 function prepopulateForm(messageObj) {
-    console.log('this is messageObj[0] ', messageObj[0]);
-    $('input#title').attr('value', `${messageObj[0].title}`);
-    $('input#address').attr('value', `${messageObj[0].address}`);
-    $('input#imgURL').attr('value', `${messageObj[0].imgURL}`);
-    $('div#stars').addClass(`stars-${messageObj[0]._id}`);
-    $('textarea#message').text(`${messageObj[0].message}`);
-    $('img#myImg').attr('src', `${messageObj[0].imgURL}`);
+    console.log('this is messageObj ', messageObj);
+    $('input#title').val(messageObj.title);
+    $('input#address').val(messageObj.address);
+    $('input#imgURL').val(messageObj.imgURL);
+    $('select#rating').val(`${messageObj.rating}`);
+    $('#starsWrapper').addClass(`stars-rating-${messageObj.rating}`);
+    $('#starsWrapper').attr('data-clicked', `stars-rating-${messageObj.rating}`);
+    $('textarea#message').text(`${messageObj.message}`);
+    $('img#myImg').attr('src', `${messageObj.imgURL}`);
 }
 // Update.
 function updateMessage(data){

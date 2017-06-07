@@ -28,7 +28,7 @@ var _ = require('lodash');
 var messageList = [];
 
 messageList.push({
-  title: "My landord painted a rainbow on my house",
+  title: "My landord painted a rainbow on my house.",
   address: "San Francisco, CA 94104",
   rating: 5,
   imgURL: "https://s-media-cache-ak0.pinimg.com/736x/d3/68/74/d36874eee05c8b7500747cc849cb9c34.jpg",
