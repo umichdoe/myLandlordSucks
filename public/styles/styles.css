@@ -79,7 +79,7 @@ img.readable-img {
 i.fa-star {
     color: #ccc;
 }
-select#create-rating {
+select#create-rating, select#rating {
     display: none;
 }
 div.stars-rating-1 i.fa-star:first-child {

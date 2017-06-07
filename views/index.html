@@ -54,7 +54,7 @@
 <!--   New Message Form   -->
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
-        <form class="form-horizontal create-form" name='validationForm' action="">
+        <form class="form-horizontal create-form star-form" name='validationForm' action="">
           <fieldset>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-title">Title</label>
@@ -72,7 +72,6 @@
               <label class="control-label" for="create-rating">Rating</label>
               <div>
                 <select id="create-rating" name="rating" class="form-control">
-                    <option value='0'>0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -147,7 +146,7 @@
             
             <!-- here, add a containing div with class editable-modal-body -->
             <div class="editable-modal-body"> 
-            <form class='form-horizontal modal-form'>
+            <form class='form-horizontal modal-form star-form'>
               <div class="form-group">
                   <img id="myImg" >
               </div>
@@ -161,7 +160,22 @@
             </div>
             <div class="form-group">
                 <label for='rating' class='col-xs-2'>Rating</label>
-                <div id='stars'></div>
+                <div>
+                    <select id="rating" name="rating" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <div id='starsWrapper'>
+                        <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='1'></i>
+                        <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='2'></i>
+                        <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='3'></i>
+                        <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='4'></i>
+                        <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='5'></i>
+                    </div>  
+                </div>
             </div>
             <div class="form-group">
                 <label for='imgURL' class='col-xs-3'>Image URL</label>
