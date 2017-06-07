@@ -52,48 +52,44 @@
       <div class="col-md-10 col-md-offset-1">
         <form class="form-horizontal create-form star-form" name='validationForm' action="">
           <fieldset>
-            <div class="form-group col-xs-12">
+            <div class="form-group col-xs-12 asterisk">
               <label class="control-label" for="create-title">Title</label>
-              <div>
-                <input id="create-title" name="title" type="text" placeholder="Enter a title" class="form-control input-md" required>
-              </div>
+              <input id="create-title" name="title" type="text" placeholder="Enter a title" class="form-control input-md" required>
+              <p class='error'>Title is required.</p>
             </div>
-            <div class="form-group col-xs-12">
+            <div class="form-group col-xs-12 asterisk">
               <label class="control-label" for="create-address">Address</label>
-              <div>
-                <input id="create-address" name="address" type="text" placeholder="San Francisco, CA 94102" class="form-control input-md" required>
-              </div>
+              <input id="create-address" name="address" type="text" placeholder="San Francisco, CA 94102" class="form-control input-md" required>
+              <p class='error'>Address is required.</p>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-rating">Rating</label>
+              <select id="create-rating" name="rating" class="form-control" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
               <div>
-                <select id="create-rating" name="rating" class="form-control" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <div>
-                    <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='1'></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='2'></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='3'></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='4'></i>
-                    <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='5'></i>
-                </div>
+                <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='1'></i>
+                <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='2'></i>
+                <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='3'></i>
+                <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='4'></i>
+                <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='5'></i>
               </div>
+              <p class='error'>Please rate this place.</p>
             </div>
-            <div class="form-group col-xs-12">
+            <div class="form-group col-xs-12 asterisk">
               <label class="control-label" for="create-imgURL">Image URL</label>
               <span class='img-file-extension'>( jpg, jpeg, png, tiff, gif, svg )</span>
-              <div>
-                <input id="create-imgURL" name="imgURL" type="text" placeholder="https://www.domain.com/your-image.gif" class="form-control input-md" required>
-              </div>
+              <input id="create-imgURL" name="imgURL" type="text" placeholder="https://www.domain.com/your-image.gif" class="form-control input-md" required>
+              <p class='error'>Image URL is required.</p>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-message">Message</label>
               <div class="">
-                <textarea class="form-control" id="create-message" name="message" placeholder="Enter your message." required></textarea>
+                <textarea class="form-control" id="create-message" name="message" placeholder="Enter your message."></textarea>
               </div>
             </div>
 
