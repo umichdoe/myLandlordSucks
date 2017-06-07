@@ -7,6 +7,10 @@ header {
     padding-top: 10px;
     padding-bottom: 0px;
     height: 75px;
+    cursor: pointer;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
 }
 header > h2 {
     font-family: 'Gloria Hallelujah', sans-serif;
@@ -22,6 +26,9 @@ header > .logo {
     margin-right: 10px;
     padding-top: 10px;
     vertical-align: middle;
+}
+main {
+    padding-top: 90px;
 }
 #message-form {
     padding-right: 0;
@@ -112,31 +119,6 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
 }
 .form-group.invalid input {
     border: firebrick 2px solid;
-}
-#scrollToBottom {
-    cursor:pointer;
-    background-color:black;
-    display:inline-block;
-    height:40px;
-    width:40px;
-    color:#fff;
-    font-size:16pt;
-    text-align:center;
-    text-decoration:none;
-    line-height:40px;
-    float: right;
-}
-#scrollToTop {
-    cursor:pointer;
-    background-color:#0090CB;
-    display:inline-block;
-    height:40px;
-    width:40px;
-    color:#fff;
-    font-size:16pt;
-    text-align:center;
-    text-decoration:none;
-    line-height:40px;
 }
 
 /* Small Screen Break Points */
