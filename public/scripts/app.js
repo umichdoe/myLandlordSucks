@@ -20,8 +20,6 @@ $(document).ready(function() {
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
         let formData = $(this).serialize();
-        console.log('formData here: ', formData);
-
         $.ajax({
             method: 'POST',
             url: '/api/messages',
@@ -38,20 +36,23 @@ $(document).ready(function() {
     });
     // Update Button.
     $('.update-button').on('click', function(e){
-        console.log("click working!!");
-        let formData = $('.modal-form').serialize();
-        console.log('formData here: ', formData);
-
-        let msgId = $(e.target).attr('data-msg-id');
-
-        console.log(`msgID here: ${msgId}`, );
-
-        $.ajax({
-            url: `/api/messages/${msgId}`,
-            method: 'PUT',
-            data: formData,
-            success: updateMessage
+        let isFormValid = true;
+        $('#title, #address, #rating').each(function(idx, input) {
+            let isInputValid = inputValidation(input);
+            if (!isInputValid) {
+                isFormValid = false;
+            }
         });
+        if (isFormValid) {
+            let formData = $('.modal-form').serialize();
+            let msgId = $(e.target).attr('data-msg-id');
+            $.ajax({
+                url: `/api/messages/${msgId}`,
+                method: 'PUT',
+                data: formData,
+                success: updateMessage
+            });
+        }
     });
     // Delete Button.
     $('.delete-button').on('click', function(e){
@@ -86,8 +87,17 @@ $(document).ready(function() {
         $(this).closest('div').attr('data-clicked', `stars-rating-${starId}`);
         $('select').val(starId);
     });
+    // Edit Form Validation.
+    $('#title, #address').blur(function(e) {
+        inputValidation(e.target);
+    });
 
-
+    
+    
+    
+    
+    
+    
 }); // end of $(document).ready(function()).
 
 
@@ -166,6 +176,16 @@ function deleteMessage(data){
     var messageId = data._id;
     console.log("data._id = ",  messageId);
     $(`#${messageId}`).remove();
+}
+// Input Validation.
+function inputValidation(input) {
+    if (!(input.validity.valid)) {
+        $(input).closest('div').addClass('invalid');
+        return false;
+    } else {
+        $(input).closest('div').removeClass('invalid');
+        return true;
+    }
 }
 function errorMessage (error) {
     console.log(err);
