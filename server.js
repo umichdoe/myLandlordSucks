@@ -8,10 +8,12 @@ let express = require('express'),
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//takes you to index page.
 app.get('/', function homepage (req, res) {
     res.sendFile(__dirname + '/views/index.html');
 });
 
+//route directory that lists all route outputs.
 app.get('/api', function apiIndex(req, res, next) {
     res.json({
         project: "My Landlord Sucks App",
@@ -87,7 +89,6 @@ app.put('/api/messages/:id', function update(req, res){
 
 
 
-
+//listen on this frequency.
 app.listen(process.env.PORT || 3000, function () {
-    console.log('Express server is running on http://localhost:3000/');
 });

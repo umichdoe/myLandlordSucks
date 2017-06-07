@@ -1,28 +1,7 @@
-//1. https://www.rentalutions.com/education/articles/when-renting-goes-wrong-6-tenant-horror-stories/
-
-//2. https://consumerist.com/2015/09/08/san-francisco-landlord-charged-4kmonth-in-rent-for-rodent-infested-death-trap-apartments/
-
-//3. http://www.sfchronicle.com/business/article/most-bizarre-airbnb-feud-story-6824921.php
-
-//4. https://thebolditalic.com/craigslist-housing-horror-stories-the-bold-italic-san-francisco-3fb7df5d4203
-
-//5. http://www.sfgate.com/bayarea/article/Landlord-nightmare-in-eviction-attempt-3849250.php
-
-//6. https://thebillfold.com/san-francisco-airbnb-horror-story-recalls-pacific-heights-almost-perfectly-7b3810e4b2b0
-
-//7. http://brokeassstuart.com/blog/2016/08/17/draft-sf-housing-crisis-horror-story-part-2/
-
-//8. http://www.huffingtonpost.com/2014/07/29/airbnb-horror-stories_n_5614452.html
-
-//9 https://handsontap.com/california-landlord-horror-stories/
 var db = require("./models");
-
-//empty array to add objects to.
 
 // lodash for the times do util function
 var _ = require('lodash');
-//library to create fake https://www.npmjs.com/package/faker
-// var faker = require('faker');
 
 // this will fill the messageList with 20 objects that you can turn into models
 var messageList = [];
@@ -98,14 +77,11 @@ messageList.push({
   message: "She's never around."
 });
 
-console.log('this is db.Message: ', db.Message);
-
+//funtion to seed database with messages. This will delete all esisting messages before seeding.
 db.Message.remove({}, function(err, removed){
 
   db.Message.create(messageList, function(err, created){
     if (err) { return console.log('ERROR', err); }
-    console.log("all messages:", messageList);
-    console.log("created", messageList.length, "messages.");
     process.exit();
   });
 
