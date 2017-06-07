@@ -17,6 +17,7 @@ $(document).ready(function() {
         error: errorMessage
     });
 
+    // Submit to Create a New Message.
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
         let formData = $(this).serialize();
@@ -26,7 +27,6 @@ $(document).ready(function() {
             data: formData,
             success: displayMessage
         });
-        // Empties the form.
         $(this).trigger("reset");
     });
     // Edit Button.
@@ -106,7 +106,7 @@ $(document).ready(function() {
 
 
 
-///////////////// Global Scope Functions /////////////////
+///////////////// Global Scope Functions
 function renderSeedMessages(messagesArr) {
     messagesArr.forEach(function(messageObj) {
         displayMessage(messageObj);
@@ -115,7 +115,6 @@ function renderSeedMessages(messagesArr) {
 // Show One.
 function displayMessage (messageObj) {
     let imgURL = messageObj.imgURL || 'https://media.giphy.com/media/3R1dpjYOfnzJm/giphy.gif';
-    // Add a New Message to Message Board.
     let star = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
     let starsHTML = `<p>
                         <div class='stars stars-rating-${messageObj.rating}'>
@@ -135,7 +134,7 @@ function displayMessage (messageObj) {
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
         console.log('messageObj here: ', messageObj);
-        
+    
         $('.editable-modal-body').hide();
         $('.readable-modal-body').show();
         
@@ -152,7 +151,7 @@ function displayMessage (messageObj) {
         prepopulateForm(messageObj);
     });
 };
-// Edit.
+// Prepopulated Edit Form.
 function prepopulateForm(messageObj) {
     console.log('this is messageObj ', messageObj);
     $('input#title').val(messageObj.title);
@@ -193,8 +192,7 @@ function errorMessage (error) {
 function testButton(e){
   e.preventDefault();
 }
-//scroll up and down function
-// https://www.aspsnippets.com/Articles/jQuery-Scroll-to-Bottom-Button-Smooth-Animated-Scroll-to-Bottom-of-page-example-using-jQuery.aspx
+// Scroll Up and Down.
 $(function () {
     $('#scrollToBottom').bind("click", function () {
         $('html, body').animate({ scrollTop: $(document).height() }, 1200);
