@@ -20,6 +20,7 @@ $(document).ready(function() {
     // Submit to Create a New Message.
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
+        document.validationForm.imgURL.value = checkUrl(document.validationForm.imgURL.value);
         let formData = $(this).serialize();
         $.ajax({
             method: 'POST',
@@ -92,12 +93,12 @@ $(document).ready(function() {
         inputValidation(e.target);
     });
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
 }); // end of $(document).ready(function()).
 
 
@@ -134,16 +135,16 @@ function displayMessage (messageObj) {
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
         console.log('messageObj here: ', messageObj);
-    
+
         $('.editable-modal-body').hide();
         $('.readable-modal-body').show();
-        
+
         $('.readable-img').attr('src', `${messageObj.imgURL}`)
         $('.readable-title').html(messageObj.title);
         $('.readable-address').html(messageObj.address);
         $('.readable-rating').html(starsHTML);
         $('.readable-msg').html(messageObj.message);
-        
+
         $('.edit-button').attr('data-msg-id', `${messageObj._id}`);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
@@ -176,6 +177,15 @@ function deleteMessage(data){
     console.log("data._id = ",  messageId);
     $(`#${messageId}`).remove();
 }
+// Create Validation
+function checkUrl(photoUrl) {
+  if((photoUrl.match(/\.(jpeg|jpg|svg|tiff|gif|png)$/) != null)) {
+    console.log("this is photourl", photoUrl);
+    return photoUrl;
+  } else{
+    return 'https://media.giphy.com/media/l1BgQJeWwxTgkVI6A/giphy.gif';
+  }
+};
 // Input Validation.
 function inputValidation(input) {
     if (!(input.validity.valid)) {
@@ -203,4 +213,3 @@ $(function () {
         return false;
     });
 });
-

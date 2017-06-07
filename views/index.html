@@ -32,7 +32,7 @@
     <img class="logo" src="/images/shout2.png" alt="logo">
     <h2>My Landlord Sucks</h2>
   </header>
-  
+
 <!--    Main    -->
   <main>
     <section id='message-form' class="container">
@@ -55,19 +55,19 @@
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-title">Title</label>
               <div>
-                <input id="create-title" name="title" type="text" placeholder="Enter your title" class="form-control input-md">
+                <input id="create-title" name="title" type="text" placeholder="Enter a title" class="form-control input-md" required>
               </div>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-address">Address</label>
               <div>
-                <input id="create-address" name="address" type="text" placeholder="San Francisco, CA 94000" class="form-control input-md">
+                <input id="create-address" name="address" type="text" placeholder="San Francisco, CA 94102" class="form-control input-md" required>
               </div>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-rating">Rating</label>
               <div>
-                <select id="create-rating" name="rating" class="form-control">
+                <select id="create-rating" name="rating" class="form-control" required>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -87,13 +87,13 @@
               <label class="control-label" for="create-imgURL">Image URL</label>
               <span class='img-file-extension'>( jpg, jpeg, png, tiff, gif, svg )</span>
               <div>
-                <input id="create-imgURL" name="imgURL" type="text" placeholder="https://www.domain.com/your-image.gif" class="form-control input-md">
+                <input id="create-imgURL" name="imgURL" type="text" placeholder="https://www.domain.com/your-image.gif" class="form-control input-md" required>
               </div>
             </div>
             <div class="form-group col-xs-12">
               <label class="control-label" for="create-message">Message</label>
               <div class="">
-                <textarea class="form-control" id="create-message" name="message" placeholder="Enter your message."></textarea>
+                <textarea class="form-control" id="create-message" name="message" placeholder="Enter your message." required></textarea>
               </div>
             </div>
 
@@ -133,9 +133,9 @@
                 <p class='readable-address'></p>
                 <p class='readable-rating'></p>
                 <p class='readable-msg'></p>
-            </div>   
+            </div>
             <!-- .editable-modal-body -->
-            <div class="editable-modal-body"> 
+            <div class="editable-modal-body">
                 <form class='form-horizontal modal-form star-form'>
                   <div class="form-group">
                       <img id="myImg" >
@@ -166,7 +166,7 @@
                             <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='3'></i>
                             <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='4'></i>
                             <i class="fa fa-star fa-2x" aria-hidden="true" data-star-id='5'></i>
-                        </div>  
+                        </div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -177,8 +177,8 @@
                     <label for='message' class='col-xs-3'>Message</label>
                     <textarea id='message' name='message' class='col-xs-9'></textarea>
                 </div>
-              </form>  
-            </div>         
+              </form>
+            </div>
         </div>
         <!--  Modal Buttons  -->
         <div class="modal-footer">
@@ -194,6 +194,6 @@
   <div align = "right">
     <a href="javascript:;" id="scrollToTop">&#x25B2;</a>
   </div>
-    
+
 </body>
 </html>
