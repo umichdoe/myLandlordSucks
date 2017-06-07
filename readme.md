@@ -33,6 +33,6 @@ https://github.com/younjiwoo/myLandlordSucks
 ---
 
 ##### Screenshot(s)
-![alt tag](http://public/images/screenshot1.png
+![alt tag](/public/images/screenshot1.png)
 
-![alt tag](http://public/images/screenshot2.png
+![alt tag](/public/images/screenshot2.png)
