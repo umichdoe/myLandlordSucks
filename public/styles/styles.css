@@ -97,6 +97,23 @@ div.stars-rating-4 i.fa-star:nth-child(-n+4) {
 div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
     color: #d32323;
 }
+.form-group.asterisk label:after {
+    content:" *";
+    color: firebrick;
+}
+.error {
+    color: firebrick;
+    display: none;
+    clear: both;
+}
+.form-group.invalid .error {
+    display: block;
+}
+.form-group.invalid input {
+    border: firebrick 2px solid;
+}
+
+
 /* Small Screen Break Points */
 @media (max-width: 765px) {
     #messageBoard > .msg-wrapper {

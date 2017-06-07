@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="form-group col-xs-12">
-              <label class="control-label" for="create-address">City</label>
+              <label class="control-label" for="create-address">Address</label>
               <div>
                 <input id="create-address" name="address" type="text" placeholder="San Francisco, CA 94000" class="form-control input-md">
               </div>
@@ -150,18 +150,20 @@
               <div class="form-group">
                   <img id="myImg" >
               </div>
-            <div class="form-group">
+            <div class="form-group asterisk">
                 <label for='title' class='col-xs-2'>Title</label>
-                <input id='title' name='title' class='col-xs-9'>
+                <input id='title' name='title' class='col-xs-9' required>
+                <p class='error col-xs-9'>Enter your title.</p>
             </div>
-            <div class="form-group">
-                <label for='address' class='col-xs-2'>City</label>
-                <input id='address' name='address' class='col-xs-9'>
+            <div class="form-group asterisk">
+                <label for='address' class='col-xs-2'>Address</label>
+                <input id='address' name='address' class='col-xs-9' required>
+                <p class='error col-xs-9'>Enter your address.</p>
             </div>
-            <div class="form-group">
+            <div class="form-group asterisk">
                 <label for='rating' class='col-xs-2'>Rating</label>
                 <div>
-                    <select id="rating" name="rating" class="form-control">
+                    <select id="rating" name="rating" class="form-control" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -186,7 +188,6 @@
                 <textarea id='message' name='message' class='col-xs-8'></textarea>
             </div>
           </form>  
-            
         </div>         
   
 
