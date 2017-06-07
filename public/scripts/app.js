@@ -19,6 +19,8 @@ $(document).ready(function() {
 
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
+        document.validationForm.imgURL.value = checkUrl(document.validationForm.imgURL.value); //
+
         let formData = $(this).serialize();
         console.log('formData here: ', formData);
 
@@ -102,11 +104,15 @@ $(document).ready(function() {
 
 }); // end of $(document).ready(function()).
 
-
-
-
-
-
+// Validate Image URL in Create Form
+function checkUrl(photoUrl) {
+  if((photoUrl.match(/\.(jpeg|jpg|gif|png)$/) != null)) {
+    console.log("this is photourl", photoUrl);
+    return photoUrl;
+  } else{
+    return 'https://media.giphy.com/media/l1BgQJeWwxTgkVI6A/giphy.gif';
+  }
+};
 
 ///////////////// Global Scope Functions /////////////////
 function renderSeedMessages(messagesArr) {
@@ -138,16 +144,16 @@ function displayMessage (messageObj) {
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
         console.log('messageObj here: ', messageObj);
-        
+
         $('.editable-modal-body').hide();
         $('.readable-modal-body').show();
-        
+
         $('.readable-img').attr('src', `${messageObj.imgURL}`)
         $('.readable-title').html(messageObj.title);
         $('.readable-address').html(messageObj.address);
         $('.readable-rating').html(starsHTML);
         $('.readable-msg').html(messageObj.message);
-        
+
         $('.edit-button').attr('data-msg-id', `${messageObj._id}`);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
@@ -220,4 +226,3 @@ $(function () {
         return false;
     });
 });
-
