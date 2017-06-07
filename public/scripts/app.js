@@ -1,11 +1,9 @@
 $(document).ready(function() {
-    console.log('sanity check!');
-    
     // Click Header and Reload the page.
     $('header').on('click', function() {
         location.reload();
     })
-    
+
     // Create New Form.
     $('.btn-new-msg').click(function() {
         $('.create-form').toggle('slow');
@@ -106,18 +104,7 @@ $(document).ready(function() {
     $('#title, #address, #create-title, #create-address, #create-imgURL').blur(function(e) {
         inputValidation(e.target);
     });
-
-
-
-
-
-
 }); // end of $(document).ready(function()).
-
-
-
-
-
 
 
 ///////////////// Global Scope Functions
@@ -147,17 +134,16 @@ function displayMessage (messageObj) {
     </div>`);
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
-        console.log('messageObj here: ', messageObj);
-
+        //toggle between modals
         $('.editable-modal-body').hide();
         $('.readable-modal-body').show();
-
+        //change the modal's attributes
         $('.readable-img').attr('src', `${messageObj.imgURL}`)
         $('.readable-title').html(messageObj.title);
         $('.readable-address').html(messageObj.address);
         $('.readable-rating').html(starsHTML);
         $('.readable-msg').html(messageObj.message);
-
+        //add the data from the obj to the buttons to use for other funtions.
         $('.edit-button').attr('data-msg-id', `${messageObj._id}`);
         $('.update-button').attr('data-msg-id', `${messageObj._id}`);
         $('.delete-button').attr('data-msg-id', `${messageObj._id}`);
@@ -167,14 +153,13 @@ function displayMessage (messageObj) {
 };
 // Prepopulated Edit Form.
 function prepopulateForm(messageObj) {
-    console.log('this is messageObj ', messageObj);
     $('input#title').val(messageObj.title);
     $('input#address').val(messageObj.address);
     $('input#imgURL').val(messageObj.imgURL);
     $('select#rating').val(`${messageObj.rating}`);
     $('#starsWrapper').addClass(`stars-rating-${messageObj.rating}`);
     $('#starsWrapper').attr('data-clicked', `stars-rating-${messageObj.rating}`);
-    $('textarea#message').text(`${messageObj.message}`);
+    $('textarea#message').val(`${messageObj.message}`);
     $('img#myImg').attr('src', `${messageObj.imgURL}`);
 }
 // Update.
@@ -185,15 +170,12 @@ function updateMessage(data){
 }
 // Delete One.
 function deleteMessage(data){
-    console.log(data);
     var messageId = data._id;
-    console.log("data._id = ",  messageId);
     $(`#${messageId}`).remove();
 }
 // Create Validation
 function checkUrl(photoUrl) {
   if (photoUrl.match(/\.(jpeg|jpg|svg|tiff|gif|png)$/) != null) {
-    console.log("this is photourl", photoUrl);
     return photoUrl;
   } else{
     return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png';
@@ -209,9 +191,7 @@ function inputValidation(input) {
         return true;
     }
 }
+//error message for Ajax routes.
 function errorMessage (error) {
     console.log(err);
-}
-function testButton(e){
-  e.preventDefault();
 }
