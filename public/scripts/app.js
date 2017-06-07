@@ -1,6 +1,11 @@
 $(document).ready(function() {
     console.log('sanity check!');
-
+    
+    // Click Header and Reload the page.
+    $('header').on('click', function() {
+        location.reload();
+    })
+    
     // Create New Form.
     $('.btn-new-msg').click(function() {
         $('.create-form').toggle('slow');
@@ -210,14 +215,3 @@ function errorMessage (error) {
 function testButton(e){
   e.preventDefault();
 }
-// Scroll Up and Down.
-$(function () {
-    $('#scrollToBottom').bind("click", function () {
-        $('html, body').animate({ scrollTop: $(document).height() }, 1200);
-        return false;
-    });
-    $('#scrollToTop').bind("click", function () {
-        $('html, body').animate({ scrollTop: 0 }, 1200);
-        return false;
-    });
-});
