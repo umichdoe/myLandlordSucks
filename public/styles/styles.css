@@ -103,9 +103,9 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
 }
 .error {
     color: firebrick;
-    margin-left: 17%;
     display: none;
     clear: both;
+    text-align: right;
 }
 .form-group.invalid .error {
     display: block;
@@ -168,9 +168,6 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
     }
     label.col-xs-3 {
         padding-left: 0;
-    }
-    .error {
-        text-align: right;
     }
 }
 

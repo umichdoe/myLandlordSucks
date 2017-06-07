@@ -20,15 +20,24 @@ $(document).ready(function() {
     // Submit to Create a New Message.
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
-        document.validationForm.imgURL.value = checkUrl(document.validationForm.imgURL.value);
-        let formData = $(this).serialize();
-        $.ajax({
-            method: 'POST',
-            url: '/api/messages',
-            data: formData,
-            success: displayMessage
+        let isFormValid = true;
+        $('#create-title, #create-address').each(function(idx, input) {
+            let isInputValid = inputValidation(input);
+            if (!isInputValid) {
+                isFormValid = false;
+            }
         });
-        $(this).trigger("reset");
+        if (isFormValid) {
+            document.validationForm.imgURL.value = checkUrl(document.validationForm.imgURL.value);
+            let formData = $(this).serialize();
+            $.ajax({
+                method: 'POST',
+                url: '/api/messages',
+                data: formData,
+                success: displayMessage
+            });
+            $(this).trigger("reset");
+        }
     });
     // Edit Button.
     $('.edit-button').on('click', function() {
@@ -88,11 +97,10 @@ $(document).ready(function() {
         $(this).closest('div').attr('data-clicked', `stars-rating-${starId}`);
         $('select').val(starId);
     });
-    // Edit Form Validation.
-    $('#title, #address').blur(function(e) {
+    // Form Validation.
+    $('#title, #address, #create-title, #create-address, #create-imgURL').blur(function(e) {
         inputValidation(e.target);
     });
-
 
 
 
@@ -115,7 +123,7 @@ function renderSeedMessages(messagesArr) {
 }
 // Show One.
 function displayMessage (messageObj) {
-    let imgURL = messageObj.imgURL || 'https://media.giphy.com/media/3R1dpjYOfnzJm/giphy.gif';
+    let imgURL = messageObj.imgURL || 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png';
     let star = '<i class="fa fa-star fa-2x" aria-hidden="true"></i>';
     let starsHTML = `<p>
                         <div class='stars stars-rating-${messageObj.rating}'>
@@ -179,11 +187,11 @@ function deleteMessage(data){
 }
 // Create Validation
 function checkUrl(photoUrl) {
-  if((photoUrl.match(/\.(jpeg|jpg|svg|tiff|gif|png)$/) != null)) {
+  if (photoUrl.match(/\.(jpeg|jpg|svg|tiff|gif|png)$/) != null) {
     console.log("this is photourl", photoUrl);
     return photoUrl;
   } else{
-    return 'https://media.giphy.com/media/l1BgQJeWwxTgkVI6A/giphy.gif';
+    return 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/No_image_3x4.svg/1024px-No_image_3x4.svg.png';
   }
 };
 // Input Validation.
