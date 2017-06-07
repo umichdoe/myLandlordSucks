@@ -24,7 +24,7 @@ $(document).ready(function() {
     $('#message-form form').on('submit', function (e) {
         e.preventDefault();
         let isFormValid = true;
-        $('#create-title, #create-address').each(function(idx, input) {
+        $('#create-title, #create-address, #create-rating').each(function(idx, input) {
             let isInputValid = inputValidation(input);
             if (!isInputValid) {
                 isFormValid = false;
@@ -44,28 +44,44 @@ $(document).ready(function() {
     });
     // Edit Button.
     $('.edit-button').on('click', function() {
-        $('.readable-modal-body').hide();
-        $('.editable-modal-body').show();
+        let btnName = $(this).text();
+        $('.update-button').show();
+        if (btnName === 'Edit') {
+            $('.readable-modal-body').hide();
+            $('.editable-modal-body').show();
+            $(this).text('Go Back');
+            $('.update-button').prop('disabled', false);
+        } else { // btnName === 'Go Back'
+            $('.update-button').hide();
+            $(this).text('Edit')
+            $('.update-button').prop('disabled', true);
+            $('.readable-modal-body').show();
+            $('.editable-modal-body').hide();
+        }
+        
     });
     // Update Button.
     $('.update-button').on('click', function(e){
-        let isFormValid = true;
-        $('#title, #address, #rating').each(function(idx, input) {
-            let isInputValid = inputValidation(input);
-            if (!isInputValid) {
-                isFormValid = false;
-            }
-        });
-        if (isFormValid) {
-            let formData = $('.modal-form').serialize();
-            let msgId = $(e.target).attr('data-msg-id');
-            $.ajax({
-                url: `/api/messages/${msgId}`,
-                method: 'PUT',
-                data: formData,
-                success: updateMessage
+        let confirmMsg = confirm('Are you sure you want to save?');
+        if (confirmMsg) {
+            let isFormValid = true;
+            $('#title, #address, #rating').each(function(idx, input) {
+                let isInputValid = inputValidation(input);
+                if (!isInputValid) {
+                    isFormValid = false;
+                }
             });
-        }
+            if (isFormValid) {
+                let formData = $('.modal-form').serialize();
+                let msgId = $(e.target).attr('data-msg-id');
+                $.ajax({
+                    url: `/api/messages/${msgId}`,
+                    method: 'PUT',
+                    data: formData,
+                    success: updateMessage
+                });
+            }
+        }  
     });
     // Delete Button.
     $('.delete-button').on('click', function(e){
@@ -101,7 +117,7 @@ $(document).ready(function() {
         $('select').val(starId);
     });
     // Form Validation.
-    $('#title, #address, #create-title, #create-address, #create-imgURL').blur(function(e) {
+    $('#title, #address, #create-title, #create-address, #create-rating, #create-imgURL').blur(function(e) {
         inputValidation(e.target);
     });
 }); // end of $(document).ready(function()).
@@ -134,7 +150,8 @@ function displayMessage (messageObj) {
     </div>`);
     // When one message box gets clicked:
     $(`#${messageObj._id}`).on('click', function(e) {
-        //toggle between modals
+        $('.edit-button').text('Edit');
+        $('.update-button').hide();
         $('.editable-modal-body').hide();
         $('.readable-modal-body').show();
         //change the modal's attributes
@@ -184,10 +201,10 @@ function checkUrl(photoUrl) {
 // Input Validation.
 function inputValidation(input) {
     if (!(input.validity.valid)) {
-        $(input).closest('div').addClass('invalid');
+        $(input).closest('.star-div').addClass('invalid');
         return false;
     } else {
-        $(input).closest('div').removeClass('invalid');
+        $(input).closest('.star-div').removeClass('invalid');
         return true;
     }
 }
