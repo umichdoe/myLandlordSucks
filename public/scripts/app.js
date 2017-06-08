@@ -50,11 +50,9 @@ $(document).ready(function() {
             $('.readable-modal-body').hide();
             $('.editable-modal-body').show();
             $(this).text('Go Back');
-            $('.update-button').prop('disabled', false);
         } else { // btnName === 'Go Back'
             $('.update-button').hide();
             $(this).text('Edit')
-            $('.update-button').prop('disabled', true);
             $('.readable-modal-body').show();
             $('.editable-modal-body').hide();
         }
