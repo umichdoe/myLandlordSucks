@@ -159,7 +159,7 @@ div.stars-rating-5 i.fa-star:nth-child(-n+5)  {
 }
 
 /* Medium Screen Break Points */
-@media (max-width: 1300px) and (min-width: 766px) {
+@media (max-width: 2000px) and (min-width: 766px) {
     .btn-new-msg {
         width: 150px;
         float: right;
