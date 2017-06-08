@@ -32,10 +32,8 @@ app.get('/api', function apiIndex(req, res, next) {
 
 // Index of Messages
 app.get('/api/messages', function index (req, res) {
-    console.log('this is req.query: ', req.query);
     let sortField = req.query.sort;
     let direction = req.query.direction;
-    console.log(sortField);
     if (sortField && direction === 'desc') {
         sortField = '-' + sortField;
     }
@@ -48,17 +46,14 @@ app.get('/api/messages', function index (req, res) {
 // Show One
 app.get('/api/messages/:id', function index (req, res) {
     db.Message.find({ _id: req.params.id}, function(err, foundMessage){
-        console.log('foundMessage: ', foundMessage);
-        console.log('req.params.id: ', req.params.id);
         res.json(foundMessage);
     })
 });
 
 // Post
 app.post('/api/messages', function create (req, res) {
-    console.log(req.body);
     db.Message.create(req.body, function (err, message) {
-        if (err) { console.log('error', err); }
+        if (err) { console.log('error' + err); }
         res.json(message);
     });
 });
@@ -66,19 +61,15 @@ app.post('/api/messages', function create (req, res) {
 //Delete
 app.delete('/api/messages/:id', function (req,res){
   var messageId = req.params.id;
-    console.log(req.params);
-  console.log(messageId)
   db.Message.findOneAndRemove({ _id: messageId })
   .exec(function(err, foundMessage){
     res.json(foundMessage);
-    console.log(foundMessage)
   });
 });
 
 
 // PUT update
 app.put('/api/messages/:id', function update(req, res){
-  console.log(req.params.id);
   req.body.date = Date.now();
   db.Message.findByIdAndUpdate({_id: req.params.id},req.body).then(function(message) {
     db.Message.findOne({_id: req.params.id}).then(function (message) {

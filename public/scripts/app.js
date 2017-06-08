@@ -210,5 +210,5 @@ function inputValidation(input) {
 }
 //error message for Ajax routes.
 function errorMessage (error) {
-    console.log(err);
+    alert(error);
 }

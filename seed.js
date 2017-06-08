@@ -81,7 +81,7 @@ messageList.push({
 db.Message.remove({}, function(err, removed){
 
   db.Message.create(messageList, function(err, created){
-    if (err) { return console.log('ERROR', err); }
+    if (err) { console.log('ERROR' + err); }
     process.exit();
   });
 
