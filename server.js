@@ -78,8 +78,8 @@ app.put('/api/messages/:id', function update(req, res){
   });
 });
 
-
+var port = 3000;
 
 //listen on this frequency.
-app.listen(process.env.PORT || 3000, function () {
+app.listen(port, function () {
 });
